@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Emulator / NumOS</title>
+<meta name="description" content="The NumOS keypad and screen, at the real device geometry: a 320 by 156 canvas and the 6 by 9 matrix the board scans.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23c7d3c0'/%3E%3Crect x='6' y='14' width='20' height='4' fill='%23161817'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/site.css">
+<script>try{var t=localStorage.getItem('acas-theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}
+</script>
+</head>
+<body class="layout-page">
+
+<div id="cursor-default" aria-hidden="true"></div>
+
+<nav id="nav" style="position:sticky;top:0;z-index:20;background:var(--bg)">
+  <a class="nav-brand" href="/" aria-label="absolut-CAS">
+    <b>absolut-CAS</b>
+    <small>free | connected</small>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/#what-it-is">What it is</a></li>
+    <li><a href="/#features">Features</a></li>
+    <li><a class="nav-cta" href="/">Back to the site</a></li>
+    <li><button id="theme-btn" type="button" aria-live="polite">Dark</button></li>
+  </ul>
+</nav>
+
+<div class="emu-wrap" style="padding-top:2rem">
+
+  <!-- EM.1 - the flag pill. Brass, not red: the palette has no red and the display works. -->
+  <p class="emu-flag">JavaScript stand-in. The WebAssembly build lands before launch.</p>
+  <!-- EM.2 -->
+  <h1 class="emu-h1">Emulator</h1>
+  <!-- EM.3 -->
+  <p class="emu-intro">Every key below is drawn at the geometry the board actually scans: a 320 by 156
+    canvas and the same 6 by 9 matrix. The keys work and the screen is live. What this page cannot do yet
+    is run the firmware itself - that is the WebAssembly build, in progress. Nothing here is a photograph.</p>
+
+  <!-- app banner, shown only for /emulator/?app=<slug> links coming off the landing page (S3.7) -->
+  <div class="app-banner hidden" id="app-banner">
+    <p>App in front: <b id="app-name">-</b> &#183; not running in the stand-in yet</p>
+    <a class="alt-btn" href="/#features" style="margin-top:0">Back to the app list</a>
+  </div>
+
+  <div class="emu-stage">
+    <div class="device">
+      <!-- EM.4 / EM.5 / EM.6 -->
+      <div class="screen" role="img" aria-label="Calculator screen, 320 by 156">
+        <div class="screen-top"><span>NUMOS</span><span id="modes">READY</span></div>
+        <div class="screen-body">
+          <div class="expr" id="expr">&nbsp;</div>
+          <div class="res" id="res">0</div>
+        </div>
+      </div>
+      <div class="status" id="status">Canvas 320 x 156.</div>
+
+      <!-- the true 6x9 legend, in order -->
+      <div class="pad" id="pad">
+        <button class="k fn" data-k="shift">SHIFT</button>
+        <button class="k fn" data-k="alpha">ALPHA</button>
+        <button class="k fn" data-k="mode">MODE</button>
+        <button class="k fn" data-k="on">ON</button>
+        <button class="k fn" data-k="del">DEL</button>
+        <button class="k fn" data-k="ac">AC</button>
+
+        <button class="k" data-k="sin">sin(</button>
+        <button class="k" data-k="cos">cos(</button>
+        <button class="k" data-k="tan">tan(</button>
+        <button class="k" data-k="log">log(</button>
+        <button class="k" data-k="ln">ln(</button>
+        <button class="k op" data-k="pow">x^y</button>
+
+        <button class="k" data-k="sq">x^2</button>
+        <button class="k" data-k="sqrt">sqrt(</button>
+        <button class="k" data-k="lp">(</button>
+        <button class="k" data-k="rp">)</button>
+        <button class="k" data-k="pi">pi</button>
+        <button class="k" data-k="e">e</button>
+
+        <button class="k" data-k="7">7</button>
+        <button class="k" data-k="8">8</button>
+        <button class="k" data-k="9">9</button>
+        <button class="k op" data-k="div">/</button>
+        <button class="k" data-k="inv">1/x</button>
+        <button class="k fn" data-k="ncr">nCr</button>
+
+        <button class="k" data-k="4">4</button>
+        <button class="k" data-k="5">5</button>
+        <button class="k" data-k="6">6</button>
+        <button class="k op" data-k="mul">*</button>
+        <button class="k fn" data-k="fact">x!</button>
+        <button class="k fn" data-k="mplus">M+</button>
+
+        <button class="k" data-k="1">1</button>
+        <button class="k" data-k="2">2</button>
+        <button class="k" data-k="3">3</button>
+        <button class="k op" data-k="sub">-</button>
+        <button class="k fn" data-k="comma">,</button>
+        <button class="k fn" data-k="sd">S-D</button>
+
+        <button class="k" data-k="0">0</button>
+        <button class="k" data-k="dot">.</button>
+        <button class="k" data-k="neg">+/-</button>
+        <button class="k op" data-k="add">+</button>
+        <button class="k" data-k="ans">ANS</button>
+        <button class="k eq" data-k="eq">=</button>
+      </div>
+
+      <p class="emu-pad-note">A desktop keyboard drives the same keys: digits, the operators, Enter,
+        Backspace, Escape.</p>
+
+      <!-- EM.7 - the legend as a table, so it can be read without pressing anything -->
+      <div class="emu-legend">
+        <h3>The matrix, in order</h3>
+        <pre>SHIFT  ALPHA  MODE   ON     DEL    AC
+sin(   cos(   tan(   log(   ln(    x^y
+x^2    sqrt(  (      )      pi     e
+7      8      9      /      1/x    nCr
+4      5      6      *      x!     M+
+1      2      3      -      ,      S-D
+0      .      +/-    +      ANS    =</pre>
+      </div>
+    </div>
+
+    <!-- EM.8 - the side rows, carried over from v1 E1.10 to E1.16 minus the build narration -->
+    <div class="side">
+      <h2>What this is</h2>
+      <div class="r"><b>Screen</b><span>320 x 156 fitted canvas, the same geometry the device draws into.</span></div>
+      <div class="r"><b>Keypad</b><span>6 by 9 matrix. Keyboard works on desktop: digits, operators, Enter, Backspace, Escape.</span></div>
+      <div class="r"><b>Math</b><span>Handled by a local evaluator. The device routes this to the CAS.</span></div>
+      <div class="r"><b>AI arm</b><span>Runs on a recorded fixture. No key, no network, no cost.</span></div>
+      <div class="r"><b>Not built</b><span>SHIFT, ALPHA, MODE, ON, nCr, x!, M+ and S-D are placeholders in the stand-in.</span></div>
+      <p class="note">The keys that are not wired print which one they are rather than pretending to work.
+        The WebAssembly build replaces the evaluator; the screen and the keypad contract stay as they are.</p>
+      <a class="alt-btn" href="/">Back to the site</a>
+    </div>
+  </div>
+</div>
+
+<div id="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>V1 board: keypad, math, boot, Wi-Fi, camera header all live</span>
+    <span class="sep">&#9646;&#9646;&#9646;</span>
+  </div>
+</div>
+
+<script src="/assets/site.js" defer></script>
+<script src="/assets/emulator.js" defer></script>
+</body>
+</html>

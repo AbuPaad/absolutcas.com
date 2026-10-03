@@ -1,0 +1,33 @@
+# Custom response headers. This is the reason to leave GitHub Pages:
+# GH Pages cannot set these at all.
+#
+# NOT enabled yet (uncomment when the WASM emulator needs SharedArrayBuffer):
+#   Cross-Origin-Opener-Policy: same-origin
+#   Cross-Origin-Embedder-Policy: require-corp
+# require-corp breaks any cross-origin embed/subresource, so it stays off
+# until the emulator bundle actually declares pthreads: true.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/404.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Fonts and images never change under the same name: long cache, no revalidation.
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/img/*
+  Cache-Control: public, max-age=604800
+
+# CSS and JS change when the copy or the markup does: revalidate every time.
+/assets/*.css
+  Cache-Control: public, max-age=0, must-revalidate
+
+/assets/*.js
+  Cache-Control: public, max-age=0, must-revalidate

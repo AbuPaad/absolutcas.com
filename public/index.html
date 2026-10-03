@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>absolut-CAS — it's your Casio. It does more now.</title>
+<meta name="description" content="NumOS is a drop-in replacement board for the Casio fx-82 you already own: Wi-Fi, graphing, apps, a Game Boy core and an AI arm, in the shell you already know.">
+<meta property="og:title" content="absolut-CAS — it's your Casio. It does more now.">
+<meta property="og:description" content="Drop-in replacement board for the Casio fx-82. No date promised.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://absolutcas.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23c7d3c0'/%3E%3Crect x='6' y='14' width='20' height='4' fill='%23161817'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/site.css">
+<script>/* apply the saved theme before first paint: no flash */
+try{var t=localStorage.getItem('acas-theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}
+</script>
+</head>
+<body class="layout-split">
+
+<div id="cursor-default" aria-hidden="true"></div>
+
+<!-- =============== PART 1 - LEFT PANEL: fixed 40vw, never scrolls =============== -->
+<div id="panel-left">
+
+  <!-- Nav - NAV.1 .. NAV.4 -->
+  <nav id="nav">
+    <a class="nav-brand" href="/" aria-label="absolut-CAS">
+      <!-- NAV.1 -->
+      <b>absolut-CAS</b>
+      <small>free | connected</small>
+    </a>
+    <ul class="nav-links">
+      <!-- NAV.2 - each scrolls the right panel to its section id -->
+      <li><a href="#what-it-is" data-scroll="what-it-is">What it is</a></li>
+      <li><a href="#why" data-scroll="why">Why it exists</a></li>
+      <li><a href="#features" data-scroll="features">Features</a></li>
+      <li><a href="#capture" data-scroll="capture">Waitlist</a></li>
+      <!-- NAV.3 -->
+      <li><a class="nav-cta" href="/emulator/">Open the emulator</a></li>
+      <!-- NAV.4 -->
+      <li><button id="theme-btn" type="button" aria-live="polite">Dark</button></li>
+    </ul>
+  </nav>
+
+  <div class="hero-body">
+    <!-- H.1 -->
+    <p class="hero-eyebrow">Donor: Casio fx-82</p>
+
+    <div class="hero-title-block">
+      <h1 class="hero-title">
+        <!-- H.2 / H.3 -->
+        it's your casio.<br>it does more now.
+      </h1>
+      <!-- H.4 - ghost line under the title, 13% opacity in the reference -->
+      <span class="hero-ghost">aljabr</span>
+    </div>
+
+    <!-- H.5 / H.6 -->
+    <blockquote class="hero-quote-block">
+      <p class="hero-quote">&ldquo;The essence of mathematics lies in its freedom.&rdquo;</p>
+      <cite class="hero-quote-attr">george cantor</cite>
+    </blockquote>
+
+    <div class="hero-bottom">
+      <!-- H.7 -->
+      <div class="hero-tags">
+        <span class="tag">lorem ipsum</span>
+        <span class="tag">ipsum</span>
+        <span class="tag">donor</span>
+        <span class="tag">sit amet</span>
+      </div>
+      <!-- H.8 - three glyphs. Ids kept so one can be restyled or swapped: your PART 5 answer
+           was the farad symbol, so change the character inside each span when you name it. -->
+      <div class="hero-glyphs" aria-hidden="true">
+        <span id="glyph-1">&#9646;</span><span id="glyph-2">&#9646;</span><span id="glyph-3">&#9646;</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom media block - the showreel GIF slot, HELD EMPTY on purpose.
+       To fill it: drop the recording in as
+       <img src="/assets/img/showreel.gif" alt="..."> inside #media-showreel and delete the
+       placeholder div. Height is capped so the left panel still never scrolls. -->
+  <div class="hero-media">
+    <div class="hero-media-slot" id="media-showreel">
+      Showreel GIF lands here - the device, LCD running, screen cycling through the apps
+    </div>
+    <!-- H.9 / H.10 -->
+    <p class="hero-overview" style="margin-top:.8rem">
+      <span>calcs for da 21st century</span>
+      <span>wifi graphing ai games n shi</span>
+    </p>
+  </div>
+</div>
+
+<!-- =============== PART 3 - RIGHT PANEL: scrolling 60vw =============== -->
+<div id="panel-right">
+
+  <!-- Capture band - CAP.1 .. CAP.12. Above the fold, the only input on the page. -->
+  <section class="r-section capture" id="capture">
+    <!-- CAP.1 ghost statement behind the band -->
+    <p class="capture-ghost" aria-hidden="true">lorem</p>
+
+    <div class="capture-top">
+      <!-- CAP.2 -->
+      <h2 class="capture-h2">Get the launch mail.</h2>
+      <!-- CAP.3 - the $5 offer. Terms still to be written down (PART 5 item 3). -->
+      <p class="capture-offer">Join the newsletter before launch and the first 200 people get a $5 credit on the API.</p>
+    </div>
+
+    <div class="capture-bottom">
+      <!-- CAP.10 - no list exists yet, so the form does not claim it worked. site.js enforces it.
+           To wire it: give the form data-endpoint="https://..." and delete the "not wired" branch
+           at the bottom of /assets/site.js, or hand the whole form to Buttondown / Formspree. -->
+      <form class="capture-form" id="waitlist-form" novalidate>
+        <div class="form-row">
+          <!-- CAP.4 -->
+          <label class="form-lbl" for="email">Email address</label>
+          <!-- CAP.5 -->
+          <input class="form-inp" id="email" name="email" type="email" autocomplete="email"
+                 placeholder="you@example.com" required>
+        </div>
+        <!-- CAP.6 -->
+        <button class="send-btn" type="submit">Join the waitlist</button>
+      </form>
+      <!-- CAP.7 -->
+      <p class="form-note">Double opt-in. One mail to confirm, then nothing until launch.</p>
+      <!-- CAP.11 / CAP.12 -->
+      <p class="form-msg hidden" id="form-ok">You're on the list.</p>
+      <p class="form-msg bad hidden" id="form-bad" data-fail="That didn't send. Try again."></p>
+      <!-- CAP.8 / CAP.9 -->
+      <a class="alt-btn" href="/emulator/">Open the emulator</a>
+      <p class="form-note">Runs in the browser. Nothing to install.</p>
+    </div>
+  </section>
+
+  <!-- S1 - What it is -->
+  <section class="r-section" id="what-it-is">
+    <header class="r-sec-header"><h2 class="r-sec-title">What it is</h2></header>
+    <div class="r-body reveal">
+      <div class="split">
+        <div>
+          <!-- S1.2 -->
+          <p class="big-statement">Exam-legal machines are slow by rule, not by physics.</p>
+          <!-- S1.3 -->
+          <p class="prose">An exam-approved calculator is deliberately held back, because the rules require it.
+            NumOS sits in the gap: the ergonomics and muscle memory of a calculator, without the artificial
+            ceiling. You keep the device you already know and swap the board underneath it.</p>
+          <!-- S1.4 -->
+          <p class="prose">NumOS is a fork of NeoCalculator that diverges freely. It is a real operating
+            system on the device: a shell, an app set and a screen language of its own. Graphing, equations,
+            matrices, notes, a Game&nbsp;Boy core, an AI arm, and a skin redrawn to look like the calculator it
+            is standing in for. The CAS engine underneath is inherited rather than written here, which is
+            exactly why the work goes into the board, the apps and the AI bridge. Much more is coming.</p>
+        </div>
+        <dl class="deflist">
+          <!-- S1.5 -->
+          <div class="defrow"><dt>Shell</dt><dd>Stock Casio. The board and the screen come out, the shell stays.</dd></div>
+          <!-- S1.6 -->
+          <div class="defrow"><dt>Keypad</dt><dd>6 by 9 matrix on a TCA9555 over I2C. The legend follows the fx-82 closely on purpose.</dd></div>
+          <!-- S1.7 -->
+          <div class="defrow"><dt>Firmware</dt><dd>A fork of NeoCalculator that diverges freely. On-device OTA is the target.</dd></div>
+          <!-- S1.8 -->
+          <div class="defrow"><dt>Promise</dt><dd>No date is promised. The hardware is not finished and will not be rushed.</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- S2 - Why it exists -->
+  <section class="r-section" id="why">
+    <header class="r-sec-header"><h2 class="r-sec-title">Why it exists</h2></header>
+    <div class="r-body reveal">
+      <div class="prose-row">
+        <div>
+          <!-- S2.2 -->
+          <p class="prose">A graphing calculator costs a few hundred because the rules say what it may do,
+            not because the silicon costs anything like that. Exam legality is a regulatory moat and the price
+            sits behind it. The AI calculator mods doing the rounds are the other half of the same problem:
+            exam aids with no life outside the exam hall.</p>
+          <p class="prose">What the calculator in your bag is missing is not power. It is permission, and
+            permission is a decision made above the device - one that says a machine may not graph, may not
+            store, may not talk to anything. That decision is what this board steps around. The press did the
+            same thing to the same kind of rule: a machine held back by a regulation rather than by physics.</p>
+        </div>
+        <!-- The Gutenberg plate: right of the opening paragraph, plate not ghost, caption in page
+             type, cropped above its own lettering. -->
+        <figure class="plate">
+          <img src="/assets/img/plate-ink-paper.jpg" width="840" height="596" loading="lazy"
+               alt="Etched plate of Gutenberg seated in profile, checking a composing stick of raised type, paper stacked on the table beside him.">
+          <figcaption><!-- S2.8 -->$300 graphing calculators are a regulatory moat, not an engineering result. The press was the last machine held back by a rule rather than by physics.</figcaption>
+        </figure>
+      </div>
+
+      <div class="support-cards">
+        <div class="s-card">
+          <!-- S2.3 / S2.4 -->
+          <p class="s-title">One board, the whole family</p>
+          <p class="s-sub">fx-82 and fx-991 variants share the board. Casio streamlined and regionalised the line, so a single board covers them.</p>
+        </div>
+        <div class="s-card">
+          <!-- S2.5 / S2.6 -->
+          <p class="s-title">About $25 a unit</p>
+          <p class="s-sub">Build cost at a 50 unit order. Kit target around $65, donor device not included.</p>
+        </div>
+      </div>
+      <!-- S2.7 -->
+      <p class="channel-line">CrowdSupply runs the campaign, the payment and the shipping.</p>
+    </div>
+  </section>
+
+  <!-- S3 - Future intended features -->
+  <section class="r-section" id="features">
+    <header class="r-sec-header"><h2 class="r-sec-title">Future intended features</h2></header>
+    <div class="r-body reveal">
+      <!-- S3.2 -->
+      <p class="prose" style="margin-bottom:1.6rem">None of this is promised on a date. It is the intended direction.</p>
+
+      <div class="features-grid">
+        <!-- S3.3 -->
+        <div class="f-cell"><span class="f-key">Camera</span>
+          <p class="f-line">An OV2640 over SCCB on a magnetic pogo-pin header, so the module can only mate the right way. Sold as an add-on.</p></div>
+        <!-- S3.4 -->
+        <div class="f-cell"><span class="f-key">OTA</span>
+          <p class="f-line">Firmware updates over Wi-Fi, no cable, done from the device.</p></div>
+        <!-- S3.5 -->
+        <div class="f-cell"><span class="f-key">Storage</span>
+          <p class="f-line">microSD for ROMs, notes and settings.</p></div>
+        <!-- S3.6 -->
+        <div class="f-cell"><span class="f-key">Radio</span>
+          <p class="f-line">Device-hosted hotspot for setup. No app, no account.</p></div>
+        <!-- S3.7 - the app list is read off the firmware tree, src/apps/*App.cpp -->
+        <div class="f-cell"><span class="f-key">Apps</span>
+          <p class="f-line">Everything in the tree so far. Pick one to open the emulator with that app in
+            front, and come back with the back button:</p>
+          <ul class="app-list">
+            <li><a href="/emulator/?app=calculation">Calc</a></li>
+            <li><a href="/emulator/?app=grapher">Grapher</a></li>
+            <li><a href="/emulator/?app=equations">Equations</a></li>
+            <li><a href="/emulator/?app=integral">Integral</a></li>
+            <li><a href="/emulator/?app=calculus">Calculus</a></li>
+            <li><a href="/emulator/?app=matrices">Matrices</a></li>
+            <li><a href="/emulator/?app=statistics">Statistics</a></li>
+            <li><a href="/emulator/?app=probability">Probability</a></li>
+            <li><a href="/emulator/?app=regression">Regression</a></li>
+            <li><a href="/emulator/?app=sequences">Sequences</a></li>
+            <li><a href="/emulator/?app=periodic-table">Periodic table</a></li>
+            <li><a href="/emulator/?app=chemistry">Chem</a></li>
+            <li><a href="/emulator/?app=notes">Notes</a></li>
+            <li><a href="/emulator/?app=tutor">Tutor</a></li>
+            <li><a href="/emulator/?app=ai">AI</a></li>
+            <li><a href="/emulator/?app=python">Python</a></li>
+            <li><a href="/emulator/?app=neo-language">Neo language</a></li>
+            <li><a href="/emulator/?app=neural-lab">Neural lab</a></li>
+            <li><a href="/emulator/?app=optics-lab">Optics lab</a></li>
+            <li><a href="/emulator/?app=particle-lab">Particle lab</a></li>
+            <li><a href="/emulator/?app=fluid-2d">Fluid 2D</a></li>
+            <li><a href="/emulator/?app=fractal">Fractal</a></li>
+            <li><a href="/emulator/?app=circuit-core">Circuit</a></li>
+            <li><a href="/emulator/?app=bridge-designer">Bridge designer</a></li>
+            <li><a href="/emulator/?app=game-boy">Game Boy</a></li>
+            <li><a href="/emulator/?app=settings">Settings</a></li>
+          </ul>
+          <span class="f-source">Opening that page is real. Running the app in the browser is not, yet: the stand-in draws the screen and the keypad, nothing more.</span>
+        </div>
+        <!-- S3.8 - deliberately a footnote, per your note -->
+        <div class="f-cell"><span class="f-key">AI arm</span>
+          <p class="f-line">A footnote, not a selling point. A system prompt and JSON-out handling keep replies
+            legible and parseable on a 320&nbsp;by&nbsp;156 screen. WA integration is in progress, to cut down
+            hallucination.</p></div>
+      </div>
+
+      <!-- S3.9 -->
+      <div class="link-row">
+        <p>Design files and firmware</p>
+        <a class="inverse-btn" href="https://github.com/AbuPaad/Absolut-CAS" rel="noopener">github.com/AbuPaad/Absolut-CAS</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interlude band - IL.1 .. IL.3 -->
+  <section class="interlude">
+    <p class="interlude-glyph" aria-hidden="true">V1</p>
+    <div class="interlude-label">
+      <!-- IL.2 -->
+      <span class="il-status">Built. Display dead on arrival.</span>
+      <!-- IL.3 -->
+      <span class="il-next">V2 is the display fix. About a month, estimated, not promised.</span>
+    </div>
+  </section>
+
+  <!-- S4 - Index -->
+  <section class="r-section" id="index">
+    <header class="r-sec-header"><h2 class="r-sec-title">Index</h2></header>
+    <div class="r-body reveal">
+      <!-- S4.2 -->
+      <p class="prose" style="margin-bottom:1.2rem">Everything on this page, in order.</p>
+
+      <!-- S4.3 -->
+      <ul class="index-rows">
+        <li><a href="#what-it-is" data-scroll="what-it-is">What it is<span>01</span></a></li>
+        <li><a href="#why" data-scroll="why">Why it exists<span>02</span></a></li>
+        <li><a href="#features" data-scroll="features">Future intended features<span>03</span></a></li>
+        <li><a href="#capture" data-scroll="capture">Waitlist<span>04</span></a></li>
+      </ul>
+
+      <div class="closing">
+        <!-- S4.5 -->
+        <p>The newsletter gets you the launch mail, and the first 200 on it get the $5 API credit. The
+          emulator, the design files and the devlog are below; nothing here needs an account.</p>
+        <div class="closing-actions">
+          <!-- S4.4 back to the field, plus the emulator -->
+          <a class="inverse-btn" href="#capture" data-scroll="capture">Back to the field</a>
+          <a class="alt-btn" href="/emulator/" style="margin-top:0">Open the emulator</a>
+        </div>
+      </div>
+
+      <!-- Devlog: a live read of the public repo, not a webhook. The page asks GitHub on load. -->
+      <div class="devlog" id="devlog" data-repo="AbuPaad/Absolut-CAS">
+        <h3>Devlog</h3>
+        <p class="devlog-note">Pulled live from github.com/AbuPaad/Absolut-CAS</p>
+        <div class="devlog-cols">
+          <div>
+            <h4>Latest commits</h4>
+            <ul data-devlog-commits></ul>
+          </div>
+          <div>
+            <h4>Pull requests</h4>
+            <ul data-devlog-prs></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer - FT.1 and FT.2 were deleted; FT.3 stays. -->
+  <footer class="r-footer">
+    <span>the people</span>
+    <span>2026</span>
+  </footer>
+</div>
+
+<!-- =============== PART 2 - TICKER =============== -->
+<div id="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <!-- T.1 -->
+    <span>V1 board: keypad, math, boot, Wi-Fi, camera header all live</span>
+    <!-- T.3 -->
+    <span class="sep" id="ticker-sep">&#9646;&#9646;&#9646;</span>
+  </div>
+</div>
+
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

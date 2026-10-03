@@ -1,0 +1,22 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Cloudflare Workers + Static Assets deploy of absolutcas.com.
+  // Replaces GitHub Pages as the serving origin.
+  // Assets live in ./public (NOT the repo root: with the root as the asset
+  // directory, Wrangler writes .wrangler/ inside the directory it watches and
+  // reload-loops forever, and .git/ node_modules/ only stay out by ignore rules).
+  "name": "absolutcas-com",
+  "compatibility_date": "2026-10-02",
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "404-page"
+  },
+  // Attaches the apex (and www) to this Worker, replacing the stray Worker
+  // that currently 404s on both hostnames. Needs the zone on this account.
+  // Uncomment for the cutover deploy:
+  // "routes": [
+  //   { "pattern": "absolutcas.com", "custom_domain": true },
+  //   { "pattern": "www.absolutcas.com", "custom_domain": true }
+  // ],
+  "observability": { "enabled": true }
+}
