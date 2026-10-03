@@ -80,6 +80,22 @@ Commit: `ac54e2d` (28 files, +1880 / -831).
 9. **H.4 is `aljabr`** in Latin letters at 13% opacity, per your answer. The Arabic script version
    is a one-line change if you want it.
 
+## Copy slot ids are on the page, not just in comments
+
+Every element that carries a string from the copy file has `data-slot="<ID>"` in the markup, and
+CSS renders that id as a small brass badge beside the string. So the live page tells you which
+slot you are looking at. `/emulator/` does the same with the `EM.*` ids.
+
+- 65 labelled elements on the landing page, 9 on `/emulator/`, ids exactly matching the copy file.
+- Only `T.2`, `FT.1` and `FT.2` are absent, because your PART 5 answers deleted those strings.
+- `.slot-only` is an empty marker span for the two cases where an element cannot render its own
+  badge: the email `input` (CAP.5, inputs ignore pseudo-elements) and the three ghost elements
+  (`CAP.1`, `H.4`, `IL.1`, whose 5-13% opacity would swallow the badge). `EM.9` sits outside the
+  status div on purpose: the stand-in rewrites that div's text on every keypress.
+- The nav gained an `ids` button. It toggles the badges for the whole page and the choice persists
+  in localStorage, so you can screenshot the page with them off without editing anything.
+- `P5.*` flags are not on the page; they are decisions in the copy file, not strings.
+
 ## Verified (headless Chromium against `wrangler dev` on 127.0.0.1:8787)
 
 | Check | Result |

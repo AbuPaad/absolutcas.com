@@ -13,7 +13,8 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23c7d3c0'/%3E%3Crect x='6' y='14' width='20' height='4' fill='%23161817'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="/assets/site.css">
 <script>/* apply the saved theme before first paint: no flash */
-try{var t=localStorage.getItem('acas-theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}
+try{var t=localStorage.getItem('acas-theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t);}
+var s=localStorage.getItem('acas-slots');if(s==='off'||s==='on'){document.documentElement.setAttribute('data-slot-labels',s);}}catch(e){}
 </script>
 </head>
 <body class="layout-split">
@@ -25,46 +26,48 @@ try{var t=localStorage.getItem('acas-theme');if(t==='dark'||t==='light'){documen
 
   <!-- Nav - NAV.1 .. NAV.4 -->
   <nav id="nav">
-    <a class="nav-brand" href="/" aria-label="absolut-CAS">
+    <a class="nav-brand" href="/" aria-label="absolut-CAS" data-slot="NAV.1">
       <!-- NAV.1 -->
       <b>absolut-CAS</b>
       <small>free | connected</small>
     </a>
     <ul class="nav-links">
       <!-- NAV.2 - each scrolls the right panel to its section id -->
-      <li><a href="#what-it-is" data-scroll="what-it-is">What it is</a></li>
+      <li data-slot="NAV.2"><a href="#what-it-is" data-scroll="what-it-is">What it is</a></li>
       <li><a href="#why" data-scroll="why">Why it exists</a></li>
       <li><a href="#features" data-scroll="features">Features</a></li>
       <li><a href="#capture" data-scroll="capture">Waitlist</a></li>
       <!-- NAV.3 -->
-      <li><a class="nav-cta" href="/emulator/">Open the emulator</a></li>
+      <li data-slot="NAV.3"><a class="nav-cta" href="/emulator/">Open the emulator</a></li>
       <!-- NAV.4 -->
-      <li><button id="theme-btn" type="button" aria-live="polite">Dark</button></li>
+      <li data-slot="NAV.4"><button id="theme-btn" type="button" aria-live="polite">Dark</button></li>
+      <!-- dev chrome: show or hide the copy slot ids - not a copy slot itself -->
+      <li><button id="slot-btn" type="button" aria-pressed="true" title="Show or hide the copy slot ids">ids</button></li>
     </ul>
   </nav>
 
   <div class="hero-body">
     <!-- H.1 -->
-    <p class="hero-eyebrow">Donor: Casio fx-82</p>
+    <p class="hero-eyebrow" data-slot="H.1">Donor: Casio fx-82</p>
 
     <div class="hero-title-block">
       <h1 class="hero-title">
         <!-- H.2 / H.3 -->
-        it's your casio.<br>it does more now.
+        <span data-slot="H.2">it's your casio.</span><br><span data-slot="H.3">it does more now.</span>
       </h1>
       <!-- H.4 - ghost line under the title, 13% opacity in the reference -->
-      <span class="hero-ghost">aljabr</span>
+      <span class="hero-ghost">aljabr</span><span class="slot-only" data-slot="H.4"></span>
     </div>
 
     <!-- H.5 / H.6 -->
     <blockquote class="hero-quote-block">
-      <p class="hero-quote">&ldquo;The essence of mathematics lies in its freedom.&rdquo;</p>
-      <cite class="hero-quote-attr">george cantor</cite>
+      <p class="hero-quote" data-slot="H.5">&ldquo;The essence of mathematics lies in its freedom.&rdquo;</p>
+      <cite class="hero-quote-attr" data-slot="H.6">george cantor</cite>
     </blockquote>
 
     <div class="hero-bottom">
       <!-- H.7 -->
-      <div class="hero-tags">
+      <div class="hero-tags" data-slot="H.7">
         <span class="tag">lorem ipsum</span>
         <span class="tag">ipsum</span>
         <span class="tag">donor</span>
@@ -72,7 +75,7 @@ try{var t=localStorage.getItem('acas-theme');if(t==='dark'||t==='light'){documen
       </div>
       <!-- H.8 - three glyphs. Ids kept so one can be restyled or swapped: your PART 5 answer
            was the farad symbol, so change the character inside each span when you name it. -->
-      <div class="hero-glyphs" aria-hidden="true">
+      <div class="hero-glyphs" aria-hidden="true" data-slot="H.8">
         <span id="glyph-1">&#9646;</span><span id="glyph-2">&#9646;</span><span id="glyph-3">&#9646;</span>
       </div>
     </div>
@@ -83,13 +86,13 @@ try{var t=localStorage.getItem('acas-theme');if(t==='dark'||t==='light'){documen
        <img src="/assets/img/showreel.gif" alt="..."> inside #media-showreel and delete the
        placeholder div. Height is capped so the left panel still never scrolls. -->
   <div class="hero-media">
-    <div class="hero-media-slot" id="media-showreel">
+    <div class="hero-media-slot" id="media-showreel" data-slot="H.11">
       Showreel GIF lands here - the device, LCD running, screen cycling through the apps
     </div>
     <!-- H.9 / H.10 -->
     <p class="hero-overview" style="margin-top:.8rem">
-      <span>calcs for da 21st century</span>
-      <span>wifi graphing ai games n shi</span>
+      <span data-slot="H.9">calcs for da 21st century</span>
+      <span data-slot="H.10">wifi graphing ai games n shi</span>
     </p>
   </div>
 </div>
@@ -101,54 +104,58 @@ try{var t=localStorage.getItem('acas-theme');if(t==='dark'||t==='light'){documen
   <section class="r-section capture" id="capture">
     <!-- CAP.1 ghost statement behind the band -->
     <p class="capture-ghost" aria-hidden="true">lorem</p>
+    <span class="slot-only" data-slot="CAP.1"></span>
 
     <div class="capture-top">
       <!-- CAP.2 -->
-      <h2 class="capture-h2">Get the launch mail.</h2>
+      <h2 class="capture-h2" data-slot="CAP.2">Get the launch mail.</h2>
       <!-- CAP.3 - the $5 offer. Terms still to be written down (PART 5 item 3). -->
-      <p class="capture-offer">Join the newsletter before launch and the first 200 people get a $5 credit on the API.</p>
+      <p class="capture-offer" data-slot="CAP.3">Join the newsletter before launch and the first 200 people get a $5 credit on the API.</p>
     </div>
 
     <div class="capture-bottom">
       <!-- CAP.10 - no list exists yet, so the form does not claim it worked. site.js enforces it.
            To wire it: give the form data-endpoint="https://..." and delete the "not wired" branch
            at the bottom of /assets/site.js, or hand the whole form to Buttondown / Formspree. -->
-      <form class="capture-form" id="waitlist-form" novalidate>
+      <form class="capture-form" id="waitlist-form" novalidate data-slot="CAP.10">
         <div class="form-row">
           <!-- CAP.4 -->
-          <label class="form-lbl" for="email">Email address</label>
+          <label class="form-lbl" for="email">Email address<span class="slot-only" data-slot="CAP.4"></span></label>
           <!-- CAP.5 -->
           <input class="form-inp" id="email" name="email" type="email" autocomplete="email"
                  placeholder="you@example.com" required>
+          <!-- CAP.5 - the placeholder string itself. An input cannot render a pseudo-element,
+               so a zero-size span beside it carries the id -->
+          <span class="slot-only" data-slot="CAP.5"></span>
         </div>
         <!-- CAP.6 -->
-        <button class="send-btn" type="submit">Join the waitlist</button>
+        <button class="send-btn" type="submit" data-slot="CAP.6">Join the waitlist</button>
       </form>
       <!-- CAP.7 -->
-      <p class="form-note">Double opt-in. One mail to confirm, then nothing until launch.</p>
+      <p class="form-note" data-slot="CAP.7">Double opt-in. One mail to confirm, then nothing until launch.</p>
       <!-- CAP.11 / CAP.12 -->
-      <p class="form-msg hidden" id="form-ok">You're on the list.</p>
-      <p class="form-msg bad hidden" id="form-bad" data-fail="That didn't send. Try again."></p>
+      <p class="form-msg hidden" id="form-ok" data-slot="CAP.11">You're on the list.</p>
+      <p class="form-msg bad hidden" id="form-bad" data-fail="That didn't send. Try again." data-slot="CAP.12"></p>
       <!-- CAP.8 / CAP.9 -->
-      <a class="alt-btn" href="/emulator/">Open the emulator</a>
-      <p class="form-note">Runs in the browser. Nothing to install.</p>
+      <a class="alt-btn" href="/emulator/">Open the emulator<span class="slot-only" data-slot="CAP.8"></span></a>
+      <p class="form-note" data-slot="CAP.9">Runs in the browser. Nothing to install.</p>
     </div>
   </section>
 
   <!-- S1 - What it is -->
   <section class="r-section" id="what-it-is">
-    <header class="r-sec-header"><h2 class="r-sec-title">What it is</h2></header>
+    <header class="r-sec-header"><h2 class="r-sec-title" data-slot="S1.1">What it is</h2></header>
     <div class="r-body reveal">
       <div class="split">
         <div>
           <!-- S1.2 -->
-          <p class="big-statement">Exam-legal machines are slow by rule, not by physics.</p>
+          <p class="big-statement" data-slot="S1.2">Exam-legal machines are slow by rule, not by physics.</p>
           <!-- S1.3 -->
-          <p class="prose">An exam-approved calculator is deliberately held back, because the rules require it.
+          <p class="prose" data-slot="S1.3">An exam-approved calculator is deliberately held back, because the rules require it.
             NumOS sits in the gap: the ergonomics and muscle memory of a calculator, without the artificial
             ceiling. You keep the device you already know and swap the board underneath it.</p>
           <!-- S1.4 -->
-          <p class="prose">NumOS is a fork of NeoCalculator that diverges freely. It is a real operating
+          <p class="prose" data-slot="S1.4">NumOS is a fork of NeoCalculator that diverges freely. It is a real operating
             system on the device: a shell, an app set and a screen language of its own. Graphing, equations,
             matrices, notes, a Game&nbsp;Boy core, an AI arm, and a skin redrawn to look like the calculator it
             is standing in for. The CAS engine underneath is inherited rather than written here, which is
@@ -156,13 +163,13 @@ try{var t=localStorage.getItem('acas-theme');if(t==='dark'||t==='light'){documen
         </div>
         <dl class="deflist">
           <!-- S1.5 -->
-          <div class="defrow"><dt>Shell</dt><dd>Stock Casio. The board and the screen come out, the shell stays.</dd></div>
+          <div class="defrow" data-slot="S1.5"><dt>Shell</dt><dd>Stock Casio. The board and the screen come out, the shell stays.</dd></div>
           <!-- S1.6 -->
-          <div class="defrow"><dt>Keypad</dt><dd>6 by 9 matrix on a TCA9555 over I2C. The legend follows the fx-82 closely on purpose.</dd></div>
+          <div class="defrow" data-slot="S1.6"><dt>Keypad</dt><dd>6 by 9 matrix on a TCA9555 over I2C. The legend follows the fx-82 closely on purpose.</dd></div>
           <!-- S1.7 -->
-          <div class="defrow"><dt>Firmware</dt><dd>A fork of NeoCalculator that diverges freely. On-device OTA is the target.</dd></div>
+          <div class="defrow" data-slot="S1.7"><dt>Firmware</dt><dd>A fork of NeoCalculator that diverges freely. On-device OTA is the target.</dd></div>
           <!-- S1.8 -->
-          <div class="defrow"><dt>Promise</dt><dd>No date is promised. The hardware is not finished and will not be rushed.</dd></div>
+          <div class="defrow" data-slot="S1.8"><dt>Promise</dt><dd>No date is promised. The hardware is not finished and will not be rushed.</dd></div>
         </dl>
       </div>
     </div>
@@ -170,11 +177,11 @@ try{var t=localStorage.getItem('acas-theme');if(t==='dark'||t==='light'){documen
 
   <!-- S2 - Why it exists -->
   <section class="r-section" id="why">
-    <header class="r-sec-header"><h2 class="r-sec-title">Why it exists</h2></header>
+    <header class="r-sec-header"><h2 class="r-sec-title" data-slot="S2.1">Why it exists</h2></header>
     <div class="r-body reveal">
       <div class="prose-row">
-        <div>
-          <!-- S2.2 -->
+        <!-- S2.2 - one slot, two paragraphs -->
+        <div data-slot="S2.2">
           <p class="prose">A graphing calculator costs a few hundred because the rules say what it may do,
             not because the silicon costs anything like that. Exam legality is a regulatory moat and the price
             sits behind it. The AI calculator mods doing the rounds are the other half of the same problem:
@@ -189,49 +196,49 @@ try{var t=localStorage.getItem('acas-theme');if(t==='dark'||t==='light'){documen
         <figure class="plate">
           <img src="/assets/img/plate-ink-paper.jpg" width="840" height="596" loading="lazy"
                alt="Etched plate of Gutenberg seated in profile, checking a composing stick of raised type, paper stacked on the table beside him.">
-          <figcaption><!-- S2.8 -->$300 graphing calculators are a regulatory moat, not an engineering result. The press was the last machine held back by a rule rather than by physics.</figcaption>
+          <figcaption data-slot="S2.8">$300 graphing calculators are a regulatory moat, not an engineering result. The press was the last machine held back by a rule rather than by physics.</figcaption>
         </figure>
       </div>
 
       <div class="support-cards">
         <div class="s-card">
           <!-- S2.3 / S2.4 -->
-          <p class="s-title">One board, the whole family</p>
-          <p class="s-sub">fx-82 and fx-991 variants share the board. Casio streamlined and regionalised the line, so a single board covers them.</p>
+          <p class="s-title" data-slot="S2.3">One board, the whole family</p>
+          <p class="s-sub" data-slot="S2.4">fx-82 and fx-991 variants share the board. Casio streamlined and regionalised the line, so a single board covers them.</p>
         </div>
         <div class="s-card">
           <!-- S2.5 / S2.6 -->
-          <p class="s-title">About $25 a unit</p>
-          <p class="s-sub">Build cost at a 50 unit order. Kit target around $65, donor device not included.</p>
+          <p class="s-title" data-slot="S2.5">About $25 a unit</p>
+          <p class="s-sub" data-slot="S2.6">Build cost at a 50 unit order. Kit target around $65, donor device not included.</p>
         </div>
       </div>
       <!-- S2.7 -->
-      <p class="channel-line">CrowdSupply runs the campaign, the payment and the shipping.</p>
+      <p class="channel-line" data-slot="S2.7">CrowdSupply runs the campaign, the payment and the shipping.</p>
     </div>
   </section>
 
   <!-- S3 - Future intended features -->
   <section class="r-section" id="features">
-    <header class="r-sec-header"><h2 class="r-sec-title">Future intended features</h2></header>
+    <header class="r-sec-header"><h2 class="r-sec-title" data-slot="S3.1">Future intended features</h2></header>
     <div class="r-body reveal">
       <!-- S3.2 -->
-      <p class="prose" style="margin-bottom:1.6rem">None of this is promised on a date. It is the intended direction.</p>
+      <p class="prose" style="margin-bottom:1.6rem" data-slot="S3.2">None of this is promised on a date. It is the intended direction.</p>
 
       <div class="features-grid">
         <!-- S3.3 -->
-        <div class="f-cell"><span class="f-key">Camera</span>
+        <div class="f-cell" data-slot="S3.3"><span class="f-key">Camera</span>
           <p class="f-line">An OV2640 over SCCB on a magnetic pogo-pin header, so the module can only mate the right way. Sold as an add-on.</p></div>
         <!-- S3.4 -->
-        <div class="f-cell"><span class="f-key">OTA</span>
+        <div class="f-cell" data-slot="S3.4"><span class="f-key">OTA</span>
           <p class="f-line">Firmware updates over Wi-Fi, no cable, done from the device.</p></div>
         <!-- S3.5 -->
-        <div class="f-cell"><span class="f-key">Storage</span>
+        <div class="f-cell" data-slot="S3.5"><span class="f-key">Storage</span>
           <p class="f-line">microSD for ROMs, notes and settings.</p></div>
         <!-- S3.6 -->
-        <div class="f-cell"><span class="f-key">Radio</span>
+        <div class="f-cell" data-slot="S3.6"><span class="f-key">Radio</span>
           <p class="f-line">Device-hosted hotspot for setup. No app, no account.</p></div>
         <!-- S3.7 - the app list is read off the firmware tree, src/apps/*App.cpp -->
-        <div class="f-cell"><span class="f-key">Apps</span>
+        <div class="f-cell" data-slot="S3.7"><span class="f-key">Apps</span>
           <p class="f-line">Everything in the tree so far. Pick one to open the emulator with that app in
             front, and come back with the back button:</p>
           <ul class="app-list">
@@ -265,14 +272,14 @@ try{var t=localStorage.getItem('acas-theme');if(t==='dark'||t==='light'){documen
           <span class="f-source">Opening that page is real. Running the app in the browser is not, yet: the stand-in draws the screen and the keypad, nothing more.</span>
         </div>
         <!-- S3.8 - deliberately a footnote, per your note -->
-        <div class="f-cell"><span class="f-key">AI arm</span>
+        <div class="f-cell" data-slot="S3.8"><span class="f-key">AI arm</span>
           <p class="f-line">A footnote, not a selling point. A system prompt and JSON-out handling keep replies
             legible and parseable on a 320&nbsp;by&nbsp;156 screen. WA integration is in progress, to cut down
             hallucination.</p></div>
       </div>
 
       <!-- S3.9 -->
-      <div class="link-row">
+      <div class="link-row" data-slot="S3.9">
         <p>Design files and firmware</p>
         <a class="inverse-btn" href="https://github.com/AbuPaad/Absolut-CAS" rel="noopener">github.com/AbuPaad/Absolut-CAS</a>
       </div>
@@ -282,23 +289,24 @@ try{var t=localStorage.getItem('acas-theme');if(t==='dark'||t==='light'){documen
   <!-- Interlude band - IL.1 .. IL.3 -->
   <section class="interlude">
     <p class="interlude-glyph" aria-hidden="true">V1</p>
+    <span class="slot-only" data-slot="IL.1"></span>
     <div class="interlude-label">
       <!-- IL.2 -->
-      <span class="il-status">Built. Display dead on arrival.</span>
+      <span class="il-status" data-slot="IL.2">Built. Display dead on arrival.</span>
       <!-- IL.3 -->
-      <span class="il-next">V2 is the display fix. About a month, estimated, not promised.</span>
+      <span class="il-next" data-slot="IL.3">V2 is the display fix. About a month, estimated, not promised.</span>
     </div>
   </section>
 
   <!-- S4 - Index -->
   <section class="r-section" id="index">
-    <header class="r-sec-header"><h2 class="r-sec-title">Index</h2></header>
+    <header class="r-sec-header"><h2 class="r-sec-title" data-slot="S4.1">Index</h2></header>
     <div class="r-body reveal">
       <!-- S4.2 -->
-      <p class="prose" style="margin-bottom:1.2rem">Everything on this page, in order.</p>
+      <p class="prose" style="margin-bottom:1.2rem" data-slot="S4.2">Everything on this page, in order.</p>
 
       <!-- S4.3 -->
-      <ul class="index-rows">
+      <ul class="index-rows" data-slot="S4.3">
         <li><a href="#what-it-is" data-scroll="what-it-is">What it is<span>01</span></a></li>
         <li><a href="#why" data-scroll="why">Why it exists<span>02</span></a></li>
         <li><a href="#features" data-scroll="features">Future intended features<span>03</span></a></li>
@@ -307,11 +315,11 @@ try{var t=localStorage.getItem('acas-theme');if(t==='dark'||t==='light'){documen
 
       <div class="closing">
         <!-- S4.5 -->
-        <p>The newsletter gets you the launch mail, and the first 200 on it get the $5 API credit. The
+        <p data-slot="S4.5">The newsletter gets you the launch mail, and the first 200 on it get the $5 API credit. The
           emulator, the design files and the devlog are below; nothing here needs an account.</p>
         <div class="closing-actions">
           <!-- S4.4 back to the field, plus the emulator -->
-          <a class="inverse-btn" href="#capture" data-scroll="capture">Back to the field</a>
+          <a class="inverse-btn" href="#capture" data-scroll="capture">Back to the field<span class="slot-only" data-slot="S4.4"></span></a>
           <a class="alt-btn" href="/emulator/" style="margin-top:0">Open the emulator</a>
         </div>
       </div>
@@ -335,7 +343,7 @@ try{var t=localStorage.getItem('acas-theme');if(t==='dark'||t==='light'){documen
   </section>
 
   <!-- Footer - FT.1 and FT.2 were deleted; FT.3 stays. -->
-  <footer class="r-footer">
+  <footer class="r-footer" data-slot="FT.3">
     <span>the people</span>
     <span>2026</span>
   </footer>
@@ -345,9 +353,9 @@ try{var t=localStorage.getItem('acas-theme');if(t==='dark'||t==='light'){documen
 <div id="ticker" aria-hidden="true">
   <div class="ticker-track">
     <!-- T.1 -->
-    <span>V1 board: keypad, math, boot, Wi-Fi, camera header all live</span>
+    <span data-slot="T.1">V1 board: keypad, math, boot, Wi-Fi, camera header all live</span>
     <!-- T.3 -->
-    <span class="sep" id="ticker-sep">&#9646;&#9646;&#9646;</span>
+    <span class="sep" id="ticker-sep" data-slot="T.3">&#9646;&#9646;&#9646;</span>
   </div>
 </div>
 

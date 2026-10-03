@@ -337,6 +337,31 @@ body::after {
   display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
 .r-footer span { font-weight: 400; font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; }
 
+/* ---------- copy slot ids ----------
+   Every string that has a slot in SITE-COPY-v2.md carries data-slot="<ID>". The id is rendered
+   as a small brass badge by the rule below, so the page itself tells you which slot you are
+   looking at. `.slot-only` is an empty marker span for elements that cannot render a badge of
+   their own (an <input>, or a ghost element whose low opacity would swallow it).
+   Toggle off with the `ids` button in the nav; the choice persists. */
+[data-slot]::after, .slot-only::after {
+  content: attr(data-slot);
+  font-family: var(--mono); font-weight: 400; font-size: .5rem; letter-spacing: .1em;
+  text-transform: none; color: var(--brass); border: 1px solid var(--brass);
+  padding: 0 .25em; margin-left: .5em; white-space: nowrap; pointer-events: none;
+  vertical-align: .22em; line-height: 1.45; opacity: 1;
+}
+.slot-only { display: inline; }
+.slot-only::after { margin-left: .3em; }
+html[data-slot-labels="off"] [data-slot]::after,
+html[data-slot-labels="off"] .slot-only::after { display: none; }
+#slot-btn {
+  background: none; border: 1px solid var(--brass); color: var(--brass);
+  font-weight: 400; font-size: .54rem; letter-spacing: .12em; text-transform: uppercase;
+  padding: .28rem .55rem; white-space: nowrap; cursor: none; transition: all .2s;
+}
+#slot-btn:hover { background: var(--brass); color: var(--text); }
+html[data-slot-labels="off"] #slot-btn { border-color: var(--border); color: var(--text); opacity: .4; }
+
 .reveal { opacity: 0; transform: translateY(16px); transition: opacity .55s ease, transform .55s ease; }
 .reveal.on { opacity: 1; transform: none; }
 

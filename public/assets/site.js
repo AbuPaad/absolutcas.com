@@ -25,6 +25,24 @@
     });
   }
 
+  /* ---------- copy slot ids: on by default, the `ids` button flips them ---------- */
+  var slotBtn = document.getElementById('slot-btn');
+  if (slotBtn) {
+    function slotState() { return root.getAttribute('data-slot-labels') || 'on'; }
+    function slotLabel() {
+      var on = slotState() === 'on';
+      slotBtn.textContent = 'ids';
+      slotBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    }
+    slotLabel();
+    slotBtn.addEventListener('click', function () {
+      var next = slotState() === 'on' ? 'off' : 'on';
+      root.setAttribute('data-slot-labels', next);
+      try { localStorage.setItem('acas-slots', next); } catch (e) {}
+      slotLabel();
+    });
+  }
+
   /* ---------- block cursor ---------- */
   var cursor = document.getElementById('cursor-default');
   if (cursor && window.matchMedia('(min-width: 769px)').matches) {

@@ -8,7 +8,8 @@
 <meta name="description" content="The NumOS keypad and screen, at the real device geometry: a 320 by 156 canvas and the 6 by 9 matrix the board scans.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23c7d3c0'/%3E%3Crect x='6' y='14' width='20' height='4' fill='%23161817'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="/assets/site.css">
-<script>try{var t=localStorage.getItem('acas-theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}
+<script>try{var t=localStorage.getItem('acas-theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t);}
+var s=localStorage.getItem('acas-slots');if(s==='off'||s==='on'){document.documentElement.setAttribute('data-slot-labels',s);}}catch(e){}
 </script>
 </head>
 <body class="layout-page">
@@ -25,17 +26,18 @@
     <li><a href="/#features">Features</a></li>
     <li><a class="nav-cta" href="/">Back to the site</a></li>
     <li><button id="theme-btn" type="button" aria-live="polite">Dark</button></li>
+    <li><button id="slot-btn" type="button" aria-pressed="true" title="Show or hide the copy slot ids">ids</button></li>
   </ul>
 </nav>
 
 <div class="emu-wrap" style="padding-top:2rem">
 
   <!-- EM.1 - the flag pill. Brass, not red: the palette has no red and the display works. -->
-  <p class="emu-flag">JavaScript stand-in. The WebAssembly build lands before launch.</p>
+  <p class="emu-flag" data-slot="EM.1">JavaScript stand-in. The WebAssembly build lands before launch.</p>
   <!-- EM.2 -->
-  <h1 class="emu-h1">Emulator</h1>
+  <h1 class="emu-h1" data-slot="EM.2">Emulator</h1>
   <!-- EM.3 -->
-  <p class="emu-intro">Every key below is drawn at the geometry the board actually scans: a 320 by 156
+  <p class="emu-intro" data-slot="EM.3">Every key below is drawn at the geometry the board actually scans: a 320 by 156
     canvas and the same 6 by 9 matrix. The keys work and the screen is live. What this page cannot do yet
     is run the firmware itself - that is the WebAssembly build, in progress. Nothing here is a photograph.</p>
 
@@ -49,16 +51,19 @@
     <div class="device">
       <!-- EM.4 / EM.5 / EM.6 -->
       <div class="screen" role="img" aria-label="Calculator screen, 320 by 156">
-        <div class="screen-top"><span>NUMOS</span><span id="modes">READY</span></div>
+        <div class="screen-top"><span data-slot="EM.4">NUMOS</span><span id="modes" data-slot="EM.5">READY</span></div>
         <div class="screen-body">
           <div class="expr" id="expr">&nbsp;</div>
           <div class="res" id="res">0</div>
         </div>
       </div>
-      <div class="status" id="status">Canvas 320 x 156.</div>
+      <div class="status" id="status" data-slot="EM.6">Canvas 320 x 156.</div>
+      <!-- EM.9 - the runtime strings. The marker sits outside the status div because the
+           stand-in rewrites that div's text on every keypress. -->
+      <span class="slot-only" data-slot="EM.9"></span>
 
       <!-- the true 6x9 legend, in order -->
-      <div class="pad" id="pad">
+      <div class="pad" id="pad" data-slot="EM.7">
         <button class="k fn" data-k="shift">SHIFT</button>
         <button class="k fn" data-k="alpha">ALPHA</button>
         <button class="k fn" data-k="mode">MODE</button>
@@ -115,7 +120,7 @@
       <!-- EM.7 - the legend as a table, so it can be read without pressing anything -->
       <div class="emu-legend">
         <h3>The matrix, in order</h3>
-        <pre>SHIFT  ALPHA  MODE   ON     DEL    AC
+        <pre data-slot="EM.7">SHIFT  ALPHA  MODE   ON     DEL    AC
 sin(   cos(   tan(   log(   ln(    x^y
 x^2    sqrt(  (      )      pi     e
 7      8      9      /      1/x    nCr
@@ -126,7 +131,7 @@ x^2    sqrt(  (      )      pi     e
     </div>
 
     <!-- EM.8 - the side rows, carried over from v1 E1.10 to E1.16 minus the build narration -->
-    <div class="side">
+    <div class="side" data-slot="EM.8">
       <h2>What this is</h2>
       <div class="r"><b>Screen</b><span>320 x 156 fitted canvas, the same geometry the device draws into.</span></div>
       <div class="r"><b>Keypad</b><span>6 by 9 matrix. Keyboard works on desktop: digits, operators, Enter, Backspace, Escape.</span></div>

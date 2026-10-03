@@ -26,6 +26,13 @@ The v1 landing page (`public/mockup/`) was deleted in the v2 build, which supers
 Copy and slot ids for every string on the page live in
 `~/musings/absolutcas-design/v2-mbd/SITE-COPY-v2.md`; the HTML carries the same ids in comments.
 
+### Copy slot ids on the page
+
+Every string from that file carries `data-slot="<ID>"` in the markup and CSS renders the id as a
+brass badge beside it, so the page shows its own slot map. The `ids` button in the nav hides them
+(persisted in localStorage) when you want a clean screenshot. To change one string: find its id on
+the page, find the same id in `SITE-COPY-v2.md`, change it in both.
+
 Assets deliberately live in `public/`, not the repo root. With the root as the asset directory,
 Wrangler writes `.wrangler/` inside the directory it is watching and reload-loops forever, and
 `.git/` stays excluded only by an ignore rule. A separate directory makes both moot.
