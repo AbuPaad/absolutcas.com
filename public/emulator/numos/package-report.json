@@ -1,0 +1,89 @@
+{
+  "output": "out/wasm/dist/release",
+  "manifestBytes": 3047,
+  "manifestGzipBytes": 1011,
+  "manifestBrotliBytes": 872,
+  "assets": {
+    "wasm": {
+      "logicalName": "wasm",
+      "url": "./numos-emulator.89750ec19dae.wasm",
+      "bytes": 6748486,
+      "sha256": "89750ec19dae091770b60124eaef48a21cd4d8de8d4588e7911874bc5b8463ca",
+      "mime": "application/wasm",
+      "gzipBytes": 2161878,
+      "brotliBytes": 1683944
+    },
+    "fsImage": {
+      "logicalName": "fsImage",
+      "url": "./numos-emulator.fa9f8064c46a.data",
+      "bytes": 71700,
+      "sha256": "fa9f8064c46af8e5f455ec4d79c2439b6dbb38d8db04c3402007388668d6acd2",
+      "mime": "application/octet-stream",
+      "gzipBytes": 22974,
+      "brotliBytes": 20916
+    },
+    "runtime": {
+      "logicalName": "runtime",
+      "url": "./numos-runtime.f302860518b7.js",
+      "bytes": 228171,
+      "sha256": "f302860518b7397e38a7418f379f16eff5c8d65287f9119b9b8c9b83631f0e8c",
+      "mime": "text/javascript",
+      "gzipBytes": 57400,
+      "brotliBytes": 48937
+    },
+    "componentCss": {
+      "logicalName": "componentCss",
+      "url": "./numos-component.2c46732cc590.css",
+      "bytes": 13450,
+      "sha256": "2c46732cc590140ba81dc9f7c14301457eb2fe4c34047854180e1c4f937aec19",
+      "mime": "text/css",
+      "gzipBytes": 3936,
+      "brotliBytes": 3338
+    },
+    "persistence": {
+      "logicalName": "persistence",
+      "url": "./numos-persistence.3813c20a70e5.js",
+      "bytes": 13621,
+      "sha256": "3813c20a70e5181cfe7c935e0a29684e489eae0dea3ad9313faab00173796398",
+      "mime": "text/javascript",
+      "gzipBytes": 3519,
+      "brotliBytes": 3045
+    },
+    "keypad": {
+      "logicalName": "keypad",
+      "url": "./numos-keypad.1e9f02ccd7bf.js",
+      "bytes": 6855,
+      "sha256": "1e9f02ccd7bf568c1820caaa1af3e849918acf3c4b47eb351ca95a3f30a94848",
+      "mime": "text/javascript",
+      "gzipBytes": 2796,
+      "brotliBytes": 2304
+    },
+    "keyContext": {
+      "logicalName": "keyContext",
+      "url": "./numos-keycontext.ee9ed793a186.js",
+      "bytes": 27236,
+      "sha256": "ee9ed793a1861f6cd07c67fe10dfbe403c27089953b62d536c9a01c72489d185",
+      "mime": "text/javascript",
+      "gzipBytes": 2457,
+      "brotliBytes": 1987
+    },
+    "component": {
+      "logicalName": "component",
+      "url": "./numos-component.8aee9921a059.js",
+      "bytes": 78793,
+      "sha256": "8aee9921a059ec72ea08f99c12bdc2e93a8eafc1f0a1acd16bfd4ca396c78c96",
+      "mime": "text/javascript",
+      "gzipBytes": 20746,
+      "brotliBytes": 17705
+    },
+    "shell": {
+      "logicalName": "shell",
+      "url": "./numos-shell.16baf49a1873.js",
+      "bytes": 1251,
+      "sha256": "16baf49a1873873e5a661e02c714ee5ef658416ef1c68d5958411d9a17854121",
+      "mime": "text/javascript",
+      "gzipBytes": 525,
+      "brotliBytes": 439
+    }
+  }
+}

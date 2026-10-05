@@ -14,13 +14,42 @@ No build step, no framework, no server code. Plain HTML in `public/`, deployed w
       assets/
         site.css                 <- tokens, split layout, every section, both themes
         site.js                  <- theme toggle, panel scroll, reveal, ticker, waitlist form, devlog
-        emulator.js              <- the keypad + screen stand-in (ported from the deleted v1 mockup)
+        numos-loader.js          <- reads the WASM manifest and imports the shell
         fonts/                   <- Geist Mono 300/400/700 + Instrument Serif, self-hosted (OFL)
         img/plate-ink-paper.jpg  <- the S2 plate, 840px export
         img/fx82.jpg             <- donor photo, currently unreferenced
-      emulator/index.html        <- /emulator/ - the emulator page
+      emulator/index.html        <- /emulator/ - embeds the real <numos-emulator> WASM
+      emulator/numos/            <- the built NumOS WASM package (generated, see below)
     wrangler.jsonc               <- Worker name, assets dir, routing
+    scripts/sync-numos-wasm.mjs  <- copies the built WASM package into public/
     CNAME, .nojekyll             <- inert GitHub Pages leftovers, kept for rollback
+
+## The WASM emulator
+
+`/emulator/` runs the real NumOS firmware, compiled to WebAssembly, inside the
+`<numos-emulator>` custom element. Nothing about it is a JavaScript stand-in.
+
+The build lives in the firmware repo, not here:
+
+    # Absolut-CAS/firmware/AbsolutOS
+    source ~/emsdk/emsdk_env.sh
+    wasm/build.sh Release          # -> out/wasm/dist/release/
+
+Then sync it into the site and preview:
+
+    node scripts/sync-numos-wasm.mjs     # copies out/wasm/dist/release -> public/emulator/numos
+    npx wrangler@latest dev
+
+The package is **content-addressed**: every asset filename carries a hash of
+its own bytes, and `numos-assets.json` is the manifest. `numos-loader.js`
+imports the shell the manifest points at, so no hashed filename is ever
+hardcoded here. `_headers` caches the whole directory immutably.
+
+The build boots the launcher in the **Casio** theme (`NUMOS_BOOT_THEME_CASIO=1`
+in `wasm/CMakeLists.txt`). The calculator theme is switched *inside the
+firmware*: both the component's own "Switch theme" button and the page button
+call `toggleTheme()`, which sends the reserved `ALPHA`+`AC` hotkey through the
+logical-key ABI — there is no CSS theme hack and no second code path.
 
 The v1 landing page (`public/mockup/`) was deleted in the v2 build, which supersedes it.
 Copy and slot ids for every string on the page live in

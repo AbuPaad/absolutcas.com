@@ -1,2 +1,6 @@
 .wrangler/
 node_modules/
+
+# Mailing list exports. Real email addresses: never commit these.
+subscribers.csv
+brevo-import.csv

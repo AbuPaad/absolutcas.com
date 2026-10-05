@@ -1,326 +1,403 @@
 # SITE COPY — absolutcas.com
 
-Source of truth for every word that appears on the site, plus a slot-by-slot note of what graphic or
-layout sits with it. Edit the prose freely in here; this file is what I regenerate the HTML from.
+Source of truth for every word on the site, plus the graphic or layout that sits with it.
+Rewritten 2026-10-04 to match the files that are actually in `public/` right now.
 
-Created 2026-10-03. Companion to `DESIGN.md` and `PLAN.md` in `~/musings/absolutcas-design/`.
+The previous version of this file described a `public/mockup/` layout that no longer exists.
+Everything below was read out of the live HTML, not from memory.
 
 ---
 
 ## How to use this file
 
-**Slot IDs.** Every piece of copy has one (L1.1, L2.3, E1.4 …). If you just want one string changed,
-say the ID. IDs are stable; line numbers are not.
+**Slot IDs.** One per string. Prefix says which page it is on:
 
-**[ART] lines.** These say what graphic sits in that slot, where it comes from, and how it is treated
-in CSS. If you want the graphic changed, write your instruction **inside** the bracket. If you want a
-graphic *added* where there is none, the slot already exists and says `none` or `MISSING`.
+- `L…` landing page (`public/index.html`, served at `/`)
+- `A…` app gallery (`public/apps/index.html`, `/apps/`)
+- `E…` emulator (`public/emulator/index.html`, `/emulator/`)
+- `N…` not-found (`public/404.html`)
 
-**[MISSING].** A graphic that does not exist on disk yet. Nothing will appear there until you supply
-it or ask for one. These are the real art gaps on the site.
+To change one string, say the ID. IDs are stable; line numbers are not.
 
-**EDIT: lines.** Add one anywhere and I will treat it as a direct instruction for the slot above it.
+**[ART] lines.** What graphic or layout sits in that slot, and how CSS treats it.
 
-I will not rewrite your copy unprompted. If a sentence reads badly I will flag it in PART 6, not
-silently fix it.
+**[MISSING] / [PLACEHOLDER].** A graphic that is not on disk. Nothing renders there yet.
+
+**EDIT: lines.** Add one under a slot and it is treated as a direct instruction for that slot.
+
+I do not rewrite your copy unprompted. Anything that reads badly is flagged in PART 5, not changed.
 
 ---
 
 ## PART 0 — What is on disk
 
-| Path | Role | Served? |
+| Path | Role | Served at |
 |---|---|---|
-| `public/index.html` | **the file that is actually served at `/`** — still the "Hello, World!" placeholder | yes |
-| `public/mockup/index.html` | the real landing page, full copy, currently living at `/mockup/` | at `/mockup/` |
-| `public/mockup/demo.html` | the emulator page, JS stand-in, working buttons | at `/mockup/demo.html` |
-| `public/404.html` | not-found page | on unknown paths |
+| `public/index.html` | **the live landing page** | `/` |
+| `public/apps/index.html` | the app gallery, 11 capturable apps + 11 coming-soon | `/apps/` |
+| `public/emulator/index.html` | the WebAssembly emulator | `/emulator/` |
+| `public/404.html` | not-found page | unknown paths |
+| `public/assets/site.css` | all site styling (453 lines) | — |
+| `public/assets/site.js` | theme toggle, smooth anchors, waitlist form | — |
+| `public/assets/numos-loader.js` | reads the content-addressed manifest and loads the emulator | — |
+| `public/assets/fonts/` | local faces | — |
+| `public/assets/img/apps/*.webp` | 27 device captures | — |
+| `public/emulator/numos/*` | the staged WASM bundle (6.9 MB) | — |
 | `public/_headers` | cache + security headers | config |
-| `wrangler.jsonc` | Cloudflare Worker + asset config | config |
+| `wrangler.jsonc` | Cloudflare Worker + static assets config | config |
 
-So: **the landing copy in PART 1 is not the page at your domain.** It is one directory down. The
-swap is a one-line move once the copy is settled, and that is deliberate — no point publishing the
-current wording.
+The old `public/mockup/` directory and its `demo.html` are **gone**. Do not reference them.
 
-### Art inventory
+### Asset inventory
 
 | Asset | Details |
 |---|---|
-| `public/mockup/assets/fx82.jpg` | 2300x3800 JPEG, 300 dpi, **2.87 MB**. The only image file on the whole site. CSS filter: `grayscale(1) invert(1) contrast(1.14) brightness(1.04)` + `mix-blend-mode: screen`. |
-| keypad seal / 6x9 grid | **not an image** — drawn in CSS (`.padshell`, 36 divs). |
-| LCD readout block | CSS (`.lcdblock` landing, `.screen` emulator). |
-| scanline overlay | CSS, `body::after`, fixed, `pointer-events: none`. |
-| **favicon** | MISSING — every visit 404s `/favicon.ico` |
-| **social/OG image** | MISSING — no og:image, no twitter:card on any page |
-| **board render or photo** | MISSING — nothing shows the actual v1 or v2 PCB anywhere on the site |
-| **camera module photo** | MISSING — the OV2640 add-on is described in text only |
+| `public/emulator/numos/numos-emulator.89750ec19dae.wasm` | **6.5 MB**, the real firmware compiled to WebAssembly. The bundle is built and staged, not a stub. |
+| `public/emulator/numos/numos-emulator.fa9f8064c46a.data` | 72 KB preloaded MEMFS image (the AI replay fixture and the Game Boy ROMs live here) |
+| `public/assets/img/apps/*.webp` | 27 files, 3.0 MB total. **Three shots are missing** and render as text placeholders (see A-section notes) |
+| `public/assets/img/fx82.jpg` | 2.87 MB. **Orphaned — no page references it.** The old hero photo; the current hero is text-only. |
+| `public/assets/img/plate-ink-paper.jpg` | 116 KB. **Orphaned — no page references it.** |
+| favicon | present on every page as an inline SVG data URI (sage field + ink bar). Not a file. |
+| **og:image / twitter:card** | **MISSING** — no page sets either. Links shared to chat/social render with no card. |
+| **board render or photo** | **MISSING** by design (holding to software stills + donor front) |
 
 ---
 
 ## PART 1 — Landing page
 
-File: `public/mockup/index.html`
+File: `public/index.html`
+
+### Head
+
+- **L0.1** title: `absolut-CAS: Your Casio does more now`
+- **L0.2** meta description: `A drop-in upgrade for the fx-82 and fx-991 calculators: Wi-Fi, CAS math, graphing, Game Boy core, and AI tools in your original shell.`
 
 ### Nav
 
-[ART: none. Sticky bar, 56px, 2px solid paper bottom border, brand left / 5 links right. Links: Overview / Hardware / Emulator / Timeline / Waitlist. On mobile the whole link list is hidden — there is no menu behind it, so mobile has no navigation at all.]
+[ART: none. Sticky bar, brand left, 6 items right. At 640px the bar stacks and the links wrap; there is no hidden menu.]
 
-- **L1.1** brand wordmark: `Absolut CAS **/ NUMOS**` — the `NUMOS` half is the green (`--lcd`) part
-- **L1.2** link labels: `Overview` `Hardware` `Emulator` `Timeline` `Waitlist`
+- **L1.1** brand: `absolut-CAS` (bold) + `Open Hardware Project` (small)
+- **L1.2** links: `Overview` `Hardware` `Capabilities` `Apps` `Emulator`
+- **L1.3** cta: `See the apps →` → `/apps/`
+- **L1.4** theme button. Hardcoded `Light` in the HTML; `site.js` overwrites it to `Light Mode` (dark theme) or `Dark Mode` (light theme) on load. **The hardcoded label is dead copy** — it never survives first paint.
 
 ### Hero
 
-[ART: right column, 0.9fr of a 1.35fr/0.9fr grid. `public/mockup/assets/fx82.jpg`, filtered to a floating object on ink. Capped at `min(44vh, 400px)`, `object-fit: contain`. Framed by a 1px rule with 10px padding.]
-[ART-MISSING: this is the hero. A stock product photo of the donor is the weakest possible hero for a hardware project — no v1 board exists in any frame on this site.]
+[ART: none. The old right-column fx82 photo is gone. Text-only, centred, on the pale ground.]
 
-- **L1.3** eyebrow: `Donor: Casio fx-82`
-- **L1.4** h1: `It's your Casio. It does more now.`
-- **L1.5** lede: `A drop-in replacement board for the fx-82. Same shell, same keys, a computer inside.`
-- **L1.6** button 1 (solid): `Join the waitlist`
-- **L1.7** button 2: `Run the emulator`
-- **L1.8** caption left: `Donor unit`
-- **L1.9** caption right: `fx-82 / fx-991 family`
-- **L1.10** image alt text: `A Casio fx-82 scientific calculator, the donor device for NumOS`
+- **L1.5** donor pill: `Donor Shell: Casio fx-82 & fx-991 Family` [delete]
+- **L1.6** h1: `It's your Casio.` / `It does more now.` (second line in brass italic) [delete]
+- **L1.7** [delete] subtitle: `A drop-in, no-solder PCB & IPS display replacement for the Casio calculator you already own. Keep the original shell and keypad muscle memory, and upgrade the computer inside.`
+- **L1.8** button 1 (solid): `Join the Launch Waitlist` → `#waitlist`
+- **L1.9** button 2: `See the Apps →` → `/apps/`
 
 ### Telemetry strip
 
-[ART: none. Full-bleed dark band, 2px paper borders, 11px uppercase. `+` prefixes in LCD green, `!` prefix in hazard red. This is the one place red is allowed and it means the dead screen.]
+[ART: none. Full-width band. Green ticks, one brass star pulled right.]
 
-- **L1.11** `V1 BOARD`
-- **L1.12** green: `Keypad` `Math` `Boot` `Wi-Fi` `Camera header`
-- **L1.13** red: `Display`
+- **L1.10** [delete] label: `Status Log:`
+- **L1.11**[delete] green items: `✓ Keypad Matrix` `✓ Giac CAS Engine` `✓ Game Boy Core` `✓ Wi-Fi & AI Bridge`
+- **L1.12** brass item: `★ 100% Free & Open Source`
 
-### What it is
+### Waitlist (this is the primary action, and it sits ABOVE the concept section)
 
-[ART: two-column split, 1.3fr/0.9fr, 1px gap showing the line colour through, bordered. Left = big statement + paragraph. Right = 4-row definition list, label column 78px.]
+[ART: brass promo banner above the form. Form = one email field (16px so iOS does not zoom) + solid button + helper line.]
 
-- **L1.14** section label (renders as `[ What it is ]`): `What it is`
-- **L1.15** big statement: `Exam-legal machines are slow by rule, not by physics.`
-- **L1.16** paragraph: `An exam-approved calculator is deliberately held back, because the rules require it. NumOS sits in the gap: the ergonomics and muscle memory of a calculator, without the artificial ceiling. You keep the device you already know and swap the board underneath it.`
-- **L1.17** row 1 — label `Shell` / `Stock Casio. The board and the screen come out, the shell stays.`
-- **L1.18** row 2 — label `Keypad` / `6 by 9 matrix on a TCA9555 over I2C. The legend follows the fx-82 closely on purpose.`
-- **L1.19** row 3 — label `Firmware` / `A fork of NeoCalculator that diverges freely. On-device OTA is the target.`
-- **L1.20** row 4 — label `Promise` / `No date is promised. The hardware is not finished and will not be rushed.`
+- **L1.13** promo badge: `EARLY BACKER BONUS`
+- **L1.14** promo amount: `$5 API Promo Credit` [delete]
+[DELEYE]- **L1.15** promo desc: `Get $5 openrouter credits if you're on the waitlist buy a calc.`
+- **L1.16** h2: `Get the Launch Notification`
+[DELETE]- **L1.17** sub: `No spam, no marketing noise.`
+- **L1.18** placeholder: `you@example.com`
+- **L1.19** button: `Join Waitlist`
+[DELETE]- **L1.20** helper: `Double opt-in.`
+- **L1.21** success message (hidden until submit): `You're on the list!`
+- **L1.22** error message: `Please enter a valid email address.`
 
-### Hardware
+### Apps banner
 
-[ART: none. 3x2 card grid, 1px gaps, featherweight borders. Each card: 10.5px uppercase key, then a grotesque value, then a small description. On mobile 2 columns, then 1 below 520px.]
-[ART-MISSING: a pinout diagram, a board layout shot, or the 6x9 keypad legend scan would all fit here and none exist.]
+[ART: none. Accent tag, heading, paragraph, button, one note line.]
 
-- **L1.21** label `Hardware`
-- **L1.22** card 1: `Processor` / `ESP32-S3` / `N16R8 module. 16 MB flash, 8 MB PSRAM.`
-- **L1.23** card 2: `Keypad` / `6 x 9 matrix` / `Scanned through a TCA9555 I2C expander.`
-- **L1.24** card 3: `Display` / `ILI9341` / `320 x 240 glass. Fitted canvas 320 x 156 at offsetY +54.`
-- **L1.25** card 4: `Power` / `Li-ion + USB-C` / `Charges in the shell. Runs untethered.`
-- **L1.26** card 5: `Storage` / `microSD` / `For ROMs, notes and settings.`
-- **L1.27** card 6: `Radio` / `Wi-Fi` / `Device-hosted hotspot for setup. OTA over the air.`
+- **L1.23** tag: `22 Apps`  [delete]
+- **L1.24** h2: `See what it actually runs` [DELETE]
+[DELETE]- **L1.25** paragraph: `statistics, a Game Boy core and more. Eleven more are listed as coming soon. Nothing is a mockup.`
+- **L1.26** button: `Browse the Apps →` → `/apps/`
+[DELETE]- **L1.27** note: `Prefer to poke at it?` + link `The browser build still works.` → `/emulator/`
 
-### Emulator
+### Concept
 
-[ART: right column 1.15fr of a 0.85fr/1.15fr row. Left = heading + paragraph + button. Right = a CSS LCD bar (`NUMOS 320x156` / `READY`) above a 6-column CSS keypad of 36 fake keys, non-interactive, three keys tinted green (SHIFT, ALPHA, AC).]
-[ART: the keypad here is decorative only — it is not wired to anything and is not the demo. The working keypad is on the demo page.]
+[ART: none. Section label, heading, two lead paragraphs.]
 
-- **L1.28** label `Emulator`
-- **L1.29** h2: `The whole device, in a browser.`
-- **L1.30** paragraph: `The device core compiles to WebAssembly and runs on a canvas, with the keypad as real buttons beside it. Nothing to install, no account, no key.`
-- **L1.31** button: `Open the emulator`
-- **L1.32** LCD bar left: `NUMOS 320x156`
-- **L1.33** LCD bar right: `READY`
-- **L1.34** the 36 decorative key labels (row by row): `SHIFT ALPHA MODE ON DEL AC` / `x y sin cos tan log` / `7 8 9 ( ) ANS` / `4 5 6 x / %` / `1 2 3 + - =` / `0 . , pi e 10^x`. **Note these do not match the real working keypad on the demo page** — different keys, different order, and `x` appears twice in different meanings.
+- **L1.28** label (renders as `// CONCEPT`): `// CONCEPT`
+- **L1.29** h2: `A port of Numos(link to numos repo) for casio scientific calcs.`
+- **L1.30** paragraph 1: `absolut-CAS gives your Casio flagship graphing calculator capabilies while preserving the form factor and UX that you know and love.`
+- **L1.31** paragraph 2: `Everything is open, hackable, and free to modify. Zero cloud dependencies, zero subscription`
 
-### Where it goes
+### Hardware specifications
 
-[ART: same two-column split as "What it is". No graphic.]
+[ART: none. List of 6 rows; each row = a badge chip, an h3 and a paragraph. Collapses to one column at 860px.]
 
-- **L1.35** label `Where it goes`
-- **L1.36** big statement: `One board fits the whole family.`
-- **L1.37** paragraph: `Casio streamlined and regionalised its line, so the fx-82 and fx-991 variants are close enough mechanically and electrically that a single board covers them. That is where the drop-in claim gets its leverage.`
-- **L1.38** row `Family` / `fx-82 and fx-991 variants share the board.`
-- **L1.39** row `Installed` / `Roughly 350 million devices in the serviceable market.`
-- **L1.40** row `Build cost` / `About $25 per unit at a 50 unit order.`
-- **L1.41** row `Kit target` / `Around $65, donor device not included.`
-- **L1.42** row `Channel` / `CrowdSupply runs the campaign, the payment and the shipping.`
+- **L1.32** label: `// HARDWARE SPECIFICATIONS`
+- **L1.33** h2: `What's in the Drop-In Kit`
+- **L1.34** intro: `Designed as a clean swap for the ~350 million Casio fx-82 and fx-991 family calculators in circulation.`
 
-### Timeline
+- **L1.35** row 1 — badge `DROP-IN PCB` / h3 `No-Solder Motherboard Swap` / `Four screws, one connector. Swap out the OEM board without any cutting or soldering. 100% reversible back to stock anytime.`
+- **L1.36** row 2 — badge `COMPUTE & MEMORY` / h3 `ESP32-S3 (16 MB Flash / 8 MB PSRAM)` / `Dual-core Xtensa LX7 processor running at up to 240 MHz with massive vector/PSRAM headroom for heavy symbolic CAS math and Game Boy emulation.`
+- **L1.37** row 3 — badge `DISPLAY` / h3 `2.4" Color IPS LCD Screen` / `ILI9341 panel with 320×240 physical resolution and a 320×156 fitted canvas for crisp math typography, plots, and notes.`
+- **L1.38** row 4 — badge `POWER` / h3 `Rechargeable Battery & USB-C` / `Internal Li-ion battery charging right through the shell's USB-C port. Completely untethered operation.`
+- **L1.39** row 5 — badge `STORAGE` / h3 `microSD Card Slot` / `Load Game Boy ROMs, text notes, markdown cheat sheets, calculation logs, and custom environment settings.`
+- **L1.40** row 6 — badge `CONNECTIVITY & HARDWARE` / h3 `Wi-Fi & Camera Header` / `Device-hosted AP for phone setup portal. Carry onboard pogo-pin header for optional magnetic OV2640 camera add-on. (OTA Wi-Fi updates landing in upcoming release).`
 
-[ART: none. Rows, 150px / 1fr / 210px. Phase name left in grotesque caps, paragraph middle, status right in uppercase (green = done, red = alert, silver = plain).]
+### Software and firmware
 
-- **L1.43** label `Timeline`
-- **L1.44** row `V1 board` / `Ordered, built and partly tested. Keypad, math, boot, Wi-Fi and the camera header all work. The display connection is dead on arrival. That is the one defect that matters.` / status `Built / display DOA` (green)
-- **L1.45** row `V2 board` / `The display fix. Paadshi's own estimate is about a month, and it is an estimate, not a commitment. The v2 bar for done is narrow: screen works, keypad works, it boots, the camera header is sound.` / status `About a month, estimated`
-- **L1.46** row `Camera` / `An OV2640 over SCCB on a magnetic pogo-pin header, so the module can only mate the right way. Sold as an add-on, never bundled.` / status `Header already on v1`
-- **L1.47** row `Campaign` / `CrowdSupply, pre-launch. This list exists to get you the launch mail, nothing else.` / status `Not scheduled`
-- **L1.48** row `Ship` / `Measured against the closest funded play, OpenMote, which raised about $125k from roughly 885 backers and ships in February 2027.` / status `No date promised`
+[ART: none. One brass-bordered promise box, then 5 numbered capability rows.]
 
-### Waitlist
+- **L1.41** label: `// SOFTWARE & FIRMWARE`
+- **L1.42** desc: `Powered by NumOS / AbsolutOS. Built on high-performance C++ and open-source engines.`
+- **L1.43** promise box h3: `100% Open & Free to Modify`
+- **L1.44** promise box p: `All schematics, PCB designs, firmware, and tools are open-source. Fork the codebase, write your own LVGL apps, or flash custom firmware whenever you want.`
+- **L1.45** cap 01 — `Exact Symbolic CAS Math (Giac / KhiCAS)` / `Real computer algebra system: exact fractions, symbolic calculus, integrals, derivatives, matrix algebra, and equation solving rendered in STIX and Casio math typography.`
+- **L1.46** cap 02 — `Game Boy & GBC Emulation Core` / `Integrated Walnut-CGB header-only emulator. Play classic Game Boy & Game Boy Color games directly on the display using your calculator's physical keypad.`
+- **L1.47** cap 03 — `Interactive 2D Function Grapher` / `Plot expressions, analyze roots, find extremums, inspect intersections, and trace function curves at native 320×156 canvas resolution.`
+- **L1.48** cap 04 — `Markdown Notes & Document Reader` / `Read text notes, formula sheets, and markdown documents directly off the microSD card with on-device rendering.`
+- **L1.49** cap 05 — `BYOK AI Tool Integration` / `Connect over Wi-Fi to a self-hosted open-source MCP server. Bring your own API keys for AI tool explanations and Wolfram|Alpha queries, with zero locked subscriptions.`
 
-[ART: none. Two columns 0.9fr/1.1fr in a 2px paper border — the heaviest frame on the page, so it reads as the primary action. Form: email field (16px font so iOS does not zoom) + solid button + helper line. Also the only `input` on the site.]
-
-- **L1.49** label `Waitlist`
-- **L1.50** h2: `Get the launch mail.`
-- **L1.51** paragraph: `One field. No account, no payment, no newsletter. CrowdSupply handles checkout when the campaign opens, and this list only tells you it opened.`
-- **L1.52** field label: `Email address`
-- **L1.53** placeholder: `you@example.com`
-- **L1.54** button: `Join the waitlist`
-- **L1.55** helper: `Double opt-in. One mail to confirm, then nothing until launch.`
-- **L1.56** the form does not submit anywhere. On submit it replaces the helper text with `Static mockup. This form is not wired to a backend yet.` — **that string must not ship.**
+Note: the section heading for this block is absent — it goes straight from the label to the desc. (The `// SOFTWARE & FIRMWARE` label stands in for a heading.)
 
 ### Footer
 
-[ART: none. Dark band, three spans spaced out.]
-
-- **L1.57** `Absolut CAS / NumOS`
-- **L1.58** `Static mockup, not the live site` — **must not ship**
-- **L1.59** link `Emulator`
+- **L1.50** brand: `absolut-CAS` + `© 2026 • Open Hardware Calculator Project`
+- **L1.51** links: `GitHub Repo` (github.com/AbuPaad/Absolut-CAS) `Apps` `Browser Emulator` `Waitlist`
 
 ---
 
-## PART 2 — Emulator page
+## PART 2 — App gallery
 
-File: `public/mockup/demo.html`
+File: `public/apps/index.html`
+
+### Head + nav
+
+- **A0.1** title: `Apps at absolut-CAS / NumOS`
+- **A0.2** meta description: `Every app on the board, shown on the real screen: CAS maths, graphing, chemistry, circuits, a Game Boy core and more.`
+- **A1.1** brand: `absolut-CAS` + `App Gallery`
+- **A1.2** links: `Overview` `Hardware` `Emulator`
+- **A1.3** cta: `Join the Waitlist` → `/#waitlist`
+- **A1.4** theme button: hardcoded `Light Mode` (again overwritten by JS on load)
 
 ### Header
 
-[ART: none. A red-bordered flag pill above the h1 — the only hazard-red element on this page.]
+- **A1.5** label: `// THE APPS`
+- **A1.6** h1: `Everything it can do, on the real screen.`
+- **A1.7** intro: `Eleven apps, each captured from the real firmware at 320 by 156. Eleven more run on the device but cannot be captured from the emulator yet, so they are listed at the bottom instead of being faked. No image on this page is a mockup.`
 
-- **E1.1** flag: `JS stand-in. WASM build pending.`
-- **E1.2** h1: `Emulator`
-- **E1.3** paragraph: `The shipping build is the device core (SDL2 and LVGL) compiled to WebAssembly and drawn to a canvas, with the keypad as real buttons beside it. What runs here is a plain JavaScript stand-in of the same interface, so the layout and the key map can be judged before the WebAssembly port lands. The buttons really work.`
+### Index (11 cells, each = colour dot + name + launcher id)
 
-### Stage — the device
+Page order, and this order drives everything else on the page:
 
-[ART: left column 1.15fr. A CSS LCD screen at `aspect-ratio: 320/156`, LCD green fill, 2px darker border, expression right-aligned and small above a huge result. Below it a status line, then a real 6-column / 6-row keypad of **working** buttons. 46px tall, 44px on mobile. Below the whole thing a status text line.]
-[ART-MISSING: the screen is a CSS div, not a canvas. When the real build lands this is a `<canvas>`; nothing about the current look is a rendering of the actual device output.]
+| # | Name | Dot | Launcher id |
+|---|---|---|---|
+| 1 | Calculation | `#FF8000` | 00 |
+| 2 | Grapher | `#50B849` | 01 |
+| 3 | Game Boy | `#8E24AA` | 21 |
+| 4 | AI | `#00897B` | 23 |
+| 5 | Statistics | `#E65100` | 04 |
+| 6 | Calculus | `#6A1B9A` | 03 |
+| 7 | Equations | `#1565C0` | 02 |
+| 8 | Probability | `#00897B` | 05 |
+| 9 | Regression | `#BF360C` | 06 |
+| 10 | Settings | `#546E7A` | 10 |
+| 11 | Sequences | `#1B5E20` | 07 |
 
-- **E1.4** screen top left: `NUMOS`
-- **E1.5** screen top right (dynamic): `READY`
-- **E1.6** the expression line (dynamic, starts blank)
-- **E1.7** the result line (dynamic, starts at `0`)
-- **E1.8** status line, default: `Canvas 320 x 156. Transport: replay fixture.`
+**The jump-list rule.** Each plate carries a `<details>` "App index" holding the **next five apps in page order, wrapping at the end**, plus one link `See all 11 apps` back to the top index. This markup is generated from the table above — do not hand-edit one plate's list.
 
-**The real keypad labels, in order** (these are the true 6x9 legend, unlike the decorative grid on the landing page):
+**Shared per-plate strings.** Every plate repeats these verbatim:
 
-    SHIFT  ALPHA  MODE   ON     DEL    AC
-    sin(   cos(   tan(   log(   ln(    x^y
-    x^2    sqrt(  (      )      pi     e
-    7      8      9      /      1/x    nCr
-    4      5      6      *      x!     M+
-    1      2      3      -      ,      S-D
-    0      .      +/-    +      ANS    =
+- **A2.1** jump summary: `App index`
+- **A2.2** jump tail link: `See all 11 apps`
+- **A2.3** CTA on every plate: `Join the Launch Waitlist` → `/#waitlist`
+- **A2.4** eyebrow format: `APP nn` (the launcher id, not the page position)
 
-- **E1.9** SHIFT, ALPHA, MODE, ON, nCr, x!, M+ and S-D are **not implemented** — pressing one prints `Not built in the stand-in: <KEY>.`
+### Plates
 
-### Stage — the side panel
+**1 — Calculation** (id `app-calculation`, accent `#FF8000`, `APP 00`)
+- **A3.1** sub: `The scientific calculator, exact. Fractions stay fractions, results are typeset rather than printed, and the last fifty calculations are one key away.`
+- shots (3):
+  1. `/assets/img/apps/calculation-1.webp` — `Enter 1/3 + 1/6, get a real fraction: 1/2, typeset.`
+  2. `/assets/img/apps/calculation-2.webp` — `One key flips exact, to periodic, to a 200-digit decimal.`
+  3. `/assets/img/apps/calculation-3.webp` — `Step-by-step mode breaks the arithmetic into atomic transformations.`
+- caps: `Exact symbolic and decimal evaluation via the CAS` / `Stacked fractions, roots, powers and trig, typeset` / `Fifty-entry history with expression recall` / `Variables A to F stored to flash` / `Prime factorisation`
 
-[ART: none. Right column 0.85fr. Heading + 5 label/value rows + a closing note paragraph.]
+**2 — Grapher** (id `app-grapher`, accent `#50B849`, `APP 01`)
+- **A4.1** sub: `Plot several relations at once including implicit curves and shaded inequalities, then trace them and snap to the points that matter.`
+- shots (3):
+  1. `grapher-1.webp` — `An explicit curve, a line, an implicit circle and a shaded region on one grid.`
+  2. `grapher-2.webp` — `Trace an implicit curve: the readout follows, the curve stays put.`
+  3. `grapher-3.webp` — `Roots, extrema and intersections found for you and marked on the curve.`
+- caps: `y = f(x), x = f(y), implicit relations and inequalities` / `Roots, minima, maxima, y-intercepts and intersections` / `Tangent and integral overlays drawn on the curve` / `Casio split view with numbered slots and a value table`
 
-- **E1.10** heading: `What this is`
-- **E1.11** `Screen` / `320 x 156 fitted canvas, the same geometry the device draws into.`
-- **E1.12** `Keypad` / `6 by 9 matrix. Keyboard works on desktop: digits, operators, Enter, Backspace, Escape.`
-- **E1.13** `Math` / `Handled by a small local evaluator. The device routes this to the CAS.`
-- **E1.14** `AI arm` / `Runs on a recorded fixture. No key, no network, no cost.`
-- **E1.15** `Not built` / `SHIFT, ALPHA, MODE, ON, nCr, x!, M+ and S-D are placeholders in the stand-in.`
-- **E1.16** note: `The real page lazy-loads the WebAssembly bundle only when you reach this section, and it runs the emulator loop in a worker so the page never stutters. Neither is wired up in the stand-in.`
+**3 — Game Boy** (id `app-gameboy`, accent `#8E24AA`, `APP 21`) — flagged motion
+- **A5.1** head flag: `Motion: ship as MP4` (rendered in the plate head; see PART 5)
+- **A5.2** sub: `A Game Boy and Game Boy Color core, driven by the calculator keypad. Load a ROM from the card and the saves go back to the card.`
+- shots (3):
+  1. `gameboy-1.webp` — `Pick a ROM from the card; the list wears the same theme as the OS.`
+  2. `gameboy-2.webp` — `Colour titles run at the right palette, not the four-shade grey.`
+  3. `gameboy-3.webp` — `DMG and CGB cores, the calculator keypad as a controller.`
+- caps: `Game Boy and Game Boy Color` / `MBC1, MBC2, MBC3 and MBC5 mappers, plus RTC` / `Cartridge save files written back to the card` / `Homebrew ROMs only: no commercial titles can ship with the site`
+
+**4 — AI** (id `app-ai`, accent `#00897B`, `APP 23`)
+- **A6.1** sub: `An assistant that lives on the device and answers in markdown: watch it stream, then page through the answer with the same keys you use everywhere else.`
+- shots (3):
+  1. `ai-1.webp` — `The answer arrives as markdown and is laid out, not dumped as plain text.`
+  2. `ai-2.webp` — `Long answers paginate; left and right walk the pages.`
+  3. `ai-3.webp` — `Pick the model on the device; the choice persists.`
+- caps: `Markdown rendered and paginated on the device` / `Answers stream in token by token` / `Every answer saved as a .md file on the card` / `Prompts typed on the calculator keypad`
+
+**5 — Statistics** (id `app-statistics`, accent `#E65100`, `APP 04`)
+- **A7.1** sub: `Type in values and their frequencies, and get the descriptive statistics and a histogram back.`
+- shots (3):
+  1. `statistics-1.webp` — `A value column and a frequency column, twenty rows deep.`
+  2. `statistics-2.webp` — `Seven frequency-weighted statistics, recomputed as you type.`
+  3. `statistics-3.webp` — `The distribution drawn from the same numbers in the table.`
+- caps: `Twenty-row value and frequency table` / `Mean, median, standard deviation, min, max, sum, n` / `Live histogram on the graph tab`
+
+**6 — Calculus** (id `app-calculus`, accent `#6A1B9A`, `APP 03`)
+- **A8.1** sub: `Derivatives and indefinite integrals, with the working shown when the native solver can prove it agrees with the CAS.`
+- shots (3):
+  1. `calculus-1.webp` — `A chain of derivatives, typeset properly with a fraction bar.`
+  2. `calculus-2.webp` — `Integration by parts, worked out symbolically.`
+  3. `calculus-3.webp` — `When there is no closed form, it says so and shows the integral.`
+- caps: `Symbolic differentiation and indefinite integration` / `Results typeset with real fraction bars and radicals` / `Step-by-step view, shown only when it verifies against the CAS`
+
+**7 — Equations** (id `app-equations`, accent `#1565C0`, `APP 02`) — one placeholder
+- **A9.1** sub: `Solve one equation or a system of up to three, exactly, with the steps laid out when the solver can justify them.`
+- shots (3):
+  1. `equations-1.webp` — `Exact roots, not decimal approximations.`
+  2. **PLACEHOLDER** — no `equations-2.webp` on disk. Frame carries `The steps view showing the factored form, with the factor highlighted as the step that just changed.` Caption: `Each step highlights exactly what changed.`
+  3. `equations-3.webp` — `Systems up to three equations in x, y and z.`
+- caps: `Up to three equations, solved exactly` / `Polynomial, exponential and logarithmic templates` / `Quadratic and cubic step-by-step solving` / `Complex roots when the domain is switched on`
+
+**8 — Probability** (id `app-probability`, accent `#00897B`, `APP 05`)
+- **A10.1** sub: `Set the mean, the spread and a boundary, and read the probability straight off the curve.`
+- shots (3):
+  1. `probability-1.webp` — `A shaded tail and both numbers, read off the same curve.`
+  2. `probability-2.webp` — `Any mean and spread, redrawn as you change them.`
+  3. `probability-3.webp` — `Three parameters, edited in place.`
+- caps: `Normal density and cumulative probability` / `Shaded area up to the boundary` / `Values shown to six decimal places`
+
+**9 — Regression** (id `app-regression`, accent `#BF360C`, `APP 06`) — all three placeholders
+- **A11.1** sub: `Enter paired data and fit a straight line or a parabola, with the fit judged in front of you.`
+- shots (3), **no webp files on disk**:
+  1. `The fitted equation and its coefficients, spelled out.`
+  2. `The data and the fit on the same axes.`
+  3. `Switch models and watch the fit change.`
+- caps: `Linear and quadratic least squares` / `Coefficient of determination shown for both` / `Scatter plot with the fitted curve`
+
+**10 — Settings** (id `app-settings`, accent `#546E7A`, `APP 10`) — one placeholder
+- **A12.1** sub: `Angle mode, precision, the theme, and the Wi-Fi setup that runs on the device itself.`
+- shots (3):
+  1. `settings-1.webp` — `Angle mode, complex numbers, precision, theme: all in one list.`
+  2. **PLACEHOLDER** — no `settings-2.webp`. Frame text: `The Wi-Fi sub-screen with the setup portal running: the network name, the address to open, and how many devices have joined.` Caption: `The calculator hosts its own setup network for your phone.`
+  3. `settings-3.webp` — `Two full themes, switched on the device.`
+- caps: `Degrees and radians` / `Six to twelve significant figures` / `NumOS and Casio themes` / `Wi-Fi provisioning from the device` / `Settings persist to flash`
+
+**11 — Sequences** (id `app-sequences`, accent `#1B5E20`, `APP 07`) — 2 shots, no-claim block
+- **A13.1** sub: `A two-sequence table.`
+- shots (2):
+  1. `sequences-1.webp` — `Two sequences, defined as short formulas.`
+  2. `sequences-2.webp` — `A table of the first twenty terms.`
+- **A13.2** no-claim bold: `No claim is made about this app on this page.`
+- **A13.3** no-claim body: `The formula reader only understands a handful of shapes (n, n squared, a times n plus b, or a constant) and silently mis-reads anything else, so it cannot honestly be shown doing more than the two rows above.`
+- No capability list on this plate, and no accent-coloured claims.
+
+### Coming soon
+
+[ART: none. Heading + note + 11 rows (dot, name, description, launcher id).]
+
+- **A14.1** h2: `Coming soon`
+- **A14.2** note: `These run on the device. They cannot be captured from the emulator yet, so they are listed here without screenshots rather than shown as something they are not.`
+- **A14.3** rows (name / dot / description / id):
+  - `Python` `#F57F17` `A script editor and a console, on the device.` 08
+  - `Matrices` `#7B1FA2` `Three matrix slots up to five by five: add, multiply, determinants and inverses.` 09
+  - `Chemistry` `#2E7D32` `All 118 elements with a deep-dive profile, a molar-mass calculator that understands real formulae, and an equation balancer that works in exact fractions.` 11
+  - `Bridge` `#455A64` `Build a truss out of wood, steel and cable, then drive a truck across it and watch which beams give up first.` 12
+  - `Circuit` `#F9A825` `Place components on a grid, run it, and watch the voltages and currents actually happen.` 13
+  - `Fluid 2D` `#1E88E5` `A real incompressible fluid solver: drag the cursor through it, inject dye, and watch the eddies hold together.` 14
+  - `ParticleLab` `#FF9800` `A falling-sand sandbox with thirty-one materials, real heat, phase changes and a working little electrical system.` 15
+  - `Neural Lab` `#9C27B0` `Train a small neural network on the calculator itself and watch the decision boundary take shape while the loss drops.` 16
+  - `OpticsLab` `#00BCD4` `A two-lens optical bench with genuine ray tracing on the screen and the paraxial numbers printed alongside it.` 17
+  - `NeoLang` `#4CAF50` `A small scripting language with the CAS wired into it: differentiation, solving, plotting and linear algebra in a few lines.` 18
+  - `Fractals` `#3F51B5` `Four fractals with deep zoom, drawn in passes so the picture sharpens instead of stalling.` 19
 
 ### Footer
 
-- **E1.17** `Absolut CAS / NumOS`
-- **E1.18** `Static mockup, not the live site` — **must not ship**
-- **E1.19** link `Back to overview`
-
-### Runtime strings (printed into the status line, not in the layout)
-
-These appear only after interaction:
-
-- `Cleared.`
-- `That expression is not handled by the stand-in evaluator.`
-- `Syntax error. Check the brackets.`
-- `Result is not a finite number.`
-- `Evaluated locally. On the device this goes to the CAS.`
-- `Not built in the stand-in: <KEY>.`
+- **A15.1** brand: `absolut-CAS` + `© 2026 • Open Hardware Project`
+- **A15.2** links: `Back to Home` `Browser Emulator` `Waitlist`
 
 ---
 
-## PART 3 — 404 page
+## PART 3 — Emulator page
+
+File: `public/emulator/index.html`
+
+### Head + nav
+
+- **E0.1** title: `WASM Emulator at absolut-CAS / NumOS`
+- **E0.2** meta description: `Run NumOS in your browser: the real firmware compiled to WebAssembly, with the launcher, apps, CAS math and the Game Boy core.`
+- **E1.1** brand: `absolut-CAS` + `WASM Emulator`
+- **E1.2** links: `Overview` → `/#overview`, `Specs` → `/#specs`, `Features` → `/#features` **(dead anchor, see PART 5)**, `Apps` → `/apps/`
+- **E1.3** cta: `Back to Site` → `/`
+- **E1.4** theme button: hardcoded `Dark` (overwritten by JS on load)
+
+### Header
+
+- **E1.5** label: `// INTERACTIVE BROWSER BUILD`
+- **E1.6** h1: `NumOS Emulator`
+- **E1.7** subtitle: `The real firmware compiled to WebAssembly, running in this tab. Boots the launcher in the Casio theme; open Calculation, Grapher, the AI app and the Game Boy core from there.`
+
+### Stage
+
+[ART: the real `<numos-emulator>` custom element. It owns the canvas and the keypad; `/assets/numos-loader.js` reads `emulator/numos/numos-assets.json` and imports the bundle. `persistence="disabled"` so the preloaded MEMFS image (AI fixture + Game Boy ROMs) is not shadowed by IDBFS. Nothing here is faked.]
+
+- **E1.8** status line, while loading: `Loading NumOS…`
+- **E1.9** status line, on ready: `NumOS is running in this browser.`
+
+### Side card — "What is running"
+
+- **E1.10** h2: `What is running`
+- **E1.11** `Real firmware` / `The same C++ that runs on the board, compiled to WebAssembly. Not a JavaScript re-implementation.`
+- **E1.12** `Launcher + apps` / `Calculation, Grapher, Equations, Statistics, Notes, the AI wrapper and more, all reachable from the launcher.`
+- **E1.13** `AI, offline` / `The AI app reads a recorded answer from the filesystem, so it works with no network and no API key.`
+- **E1.14** `Themes` / `Boots in the Casio skin. Use the emulator's own Switch theme button, or the one below, to flip to NumOS.`
+- **E1.15** button: `Switch calculator theme` (disabled until the `numos-ready` event fires)
+- **E1.16** link button: `Join the Waitlist` → `/#waitlist`
+
+### Footer
+
+- **E1.17** brand: `absolut-CAS` + `© 2026 • Open Hardware Project`
+- **E1.18** links: `Back to Home` `Waitlist`
+
+---
+
+## PART 4 — 404 page
 
 File: `public/404.html`
 
-[ART: none. Centred, minimal, different visual language from the rest of the site.]
+[ART: **the markup does not match the stylesheet.** See PART 5, item 3. These strings render but the layout classes around them have no CSS.]
 
-- **L3.1** page title: `404 — Absolut CAS` *(contains a banned em-dash)*
-- **L3.2** h1: `404`
-- **L3.3** paragraph: `That page doesn't exist here.` — and nothing else. **No link back to the site.** That is a dead end for a visitor and a broken error state.
-
----
-
-## PART 4 — The placeholder actually at the root
-
-File: `public/index.html`
-
-Still the scaffold. Everything on it goes away:
-
-- `Hello, World!`
-- `This is absolutcas.com — a static site served from GitHub Pages.` *(contains a banned em-dash, and it is now a lie — the host is Cloudflare)*
-- footer `Absolut CAS`
-- meta description `Absolut CAS — hello, world.` *(banned em-dash)*
-
-**Recommendation:** this file should become the content of PART 1, and the mockup copy should stop
-living under `/mockup/`. Say the word and I will do the move once you are happy with the wording.
-
----
-
-## PART 5 — Problems independent of tone
-
-These are mechanical, not taste:
-
-1. **Three names for one product on one page**: `Absolut CAS`, `NUMOS`/`NumOS`, and `absolutcas.com`. The nav brand reads `Absolut CAS / NUMOS`. Pick one wordmark and one project name and I will apply it everywhere.
-2. **The keypad is described two different ways.** The landing page draws 36 keys; the demo page draws a different 36. The landing one is wrong.
-3. **`The device core compiles to WebAssembly…` is present tense about something not built.** `emcc` is not installed on this machine and `out/wasm` does not exist, so the bundle has never been produced, let alone run in a browser. On a page whose whole credibility is "we tell you the truth about the v1 display", this is the sentence that costs you. It is the same class of error as a wrong number in a spec table.
-4. **Banned em-dashes** in `public/index.html` (2) and `public/404.html` (1). The mockup pages are clean. Your own rule; one grep catches it.
-5. **`Installed: roughly 350 million devices`** is the one number on the page with no visible source. Everything else is a spec or your own cost figure.
-6. **`$25 build cost` and `$65 kit target`** are your numbers and they move with order size. Fine on the page, but they are the two that will be quoted back at you.
-7. **The `OpenMote raised about $125k from roughly 885 backers` line** sits on a row labelled `Ship`, where it does not answer the question the row asks.
-8. **No mobile navigation.** Below 860px the nav list is `display: none` with no replacement.
-9. **The hero image is 2.87 MB** and then gets inverted in CSS. It is by far the heaviest thing on the site and it is a photo of a stock calculator.
-10. **No favicon, no og:image, no canonical, no `twitter:card`.** Shape: every page currently shares no card when someone pastes the link.
-11. **Page titles are inconsistent**: `NUMOS / ABSOLUT CAS` vs `Emulator / NUMOS` vs `404 — Absolut CAS`.
-
----
-
-## PART 6 — Sentences I would cut, and why
-
-You asked for the salesy ones. These are the specific offenders, quoted, with the reason. Judge them
-yourself; I am not touching any of them until you say so.
-
-| Slot | Text | Why it reads fake |
-|---|---|---|
-| L1.15 | `Exam-legal machines are slow by rule, not by physics.` | An aphorism. Nobody sells a calculator by explaining the exam regulations back to the person who is subject to them. Also it is an argument, not a fact. |
-| L1.16 | `NumOS sits in the gap…` / `without the artificial ceiling` | "Sits in the gap" is consultancy language. "Artificial ceiling" restates L1.15 more grandly. The last sentence (`You keep the device you already know and swap the board underneath it.`) does the whole job on its own. |
-| L1.20 | label `Promise` + `will not be rushed` | A row labelled Promise whose content is a disclaimer. "Will not be rushed" is you arguing with a customer who has not complained yet. |
-| L1.37 | `That is where the drop-in claim gets its leverage.` | "Leverage" is a business word. You are describing your marketing position to the reader. |
-| L1.39 | `Roughly 350 million devices in the serviceable market.` | "Serviceable market" is a deck word on a product page. |
-| L1.44 | `That is the one defect that matters.` | The honesty is good and rare. The editorialising is not needed; `the display connection is dead on arrival` already lands. |
-| L1.47 | `This list exists to get you the launch mail, nothing else.` | Protesting too much. Same as L1.51's `No account, no payment, no newsletter` — pick one place for that reassurance, not two. |
-| L1.58 / E1.18 | `Static mockup, not the live site` | Fine as a working note, fatal as shipped copy. It tells a first visitor the site is fake. |
-| E1.3 | `so the layout and the key map can be judged before the WebAssembly port lands` | Internal process. The reader does not need your build order. |
-| E1.3 | `The buttons really work.` | Defensive. Implies you expected them not to. Just let them work. |
-| E1.13 | `Handled by a small local evaluator.` | "Small" undersells the one thing that page is demonstrating. |
-| E1.14 | `No key, no network, no cost.` | "No cost" is about your bill, not the reader's. |
-| E1.16 | whole paragraph | Build-process narration (lazy-loading, workers) on a public page. It is an engineering note, not copy. |
-
-What is already working and I would leave alone: L1.4 (`It's your Casio. It does more now.`), the
-telemetry strip, L1.44's first half, L1.46 (the pogo-pin detail is real and specific), L1.30's
-`Nothing to install, no account, no key.`, and the whole `Not built` row on the demo page. Those read
-like a person wrote them.
+- **N0.1** title: `404 at absolut-CAS`
+- **N1.1** brand: `absolut-CAS` + `free | connected`
+- **N1.2** links: `Front page` → `/`, `Emulator` → `/emulator/`
+- **N1.3** theme button: `Dark`
+- **N1.4** code: `404`
+- **N1.5** body: `That path does not exist here. The front page is the whole site; the app gallery and the emulator are the two other pages. Nothing was lost: the board is at V2 and the copy is at launch, not at this address.`
+- **N1.6** button: `Back to the front page`
+- **N1.7** footer: `the people` / `2026`
+- **N1.8** ticker: `V1 board: keypad, math, boot, Wi-Fi, camera header all live`
 
 ---
 
 ## Open questions for you
 
-1. One wordmark: `NumOS` or `Absolut CAS`?
-   1. Its absolut-CAS for now. 
-2. `www` — is it redirecting to the apex, or its own thing?
-   1. www.absolutcas.com is the landing page 
-3. Is the OpenMote comparison staying at all, or was that a note to yourself that escaped into the page?
-   1. note to myself. to the end user its completely irrelevant
-4. Do you want the landing page to carry a board photo/render before launch, or is that deliberately held?
-   1. for now ima keep strictly to gifs/screenshots of the software and the front side of da casio
+1. Does the waitlist get a real backend before this page goes public, or does the form change to something honest without one?
+2. The `$5 / first 200` promo: define the mechanism, or cut it?
+3. The 404 page: restyle it to match the site, or cut it back to a plain "not found" with a link home?

@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Apps at absolut-CAS / NumOS</title>
+<meta name="description" content="Every app on the board: eleven captured from the real firmware and shown on the real screen, eleven more listed as coming soon rather than faked.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23c7d3c0'/%3E%3Crect x='6' y='14' width='20' height='4' fill='%23161817'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/site.css">
+<script>
+try {
+  var t = localStorage.getItem('acas-theme');
+  if (t === 'dark' || t === 'light') { document.documentElement.setAttribute('data-theme', t); }
+} catch(e) {}
+</script>
+</head>
+<body class="layout-page">
+
+<nav id="nav">
+  <div class="nav-container">
+    <a class="nav-brand" href="/">
+      <b>absolut-CAS</b>
+      <small>App Gallery</small>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/#overview">Overview</a></li>
+      <li><a href="/#specs">Hardware</a></li>
+      <li><a href="/emulator/">Emulator</a></li>
+      <li><a class="nav-cta" href="/#waitlist">Join the Waitlist</a></li>
+      <li><button id="theme-btn" type="button" aria-live="polite">Light Mode</button></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="main-content apps-page">
+  <div class="container">
+
+    <header class="apps-header">
+      <div class="section-label">// THE APPS</div>
+      <h1>Everything it can do, on the real screen.</h1>
+      <p class="apps-intro">
+        Eleven apps, each captured from the real firmware at 320 by 156. Eleven more run on
+        the device but cannot be captured from the emulator yet, so they are listed at the
+        bottom instead of being faked. No image on this page is a mockup.
+      </p>
+    </header>
+
+    <!-- Table of contents. Cells carry the app's real launcher colour. -->
+    <nav class="app-index" id="app-index" aria-label="App list">
+      <a href="#app-calculation"><span class="dot" style="background:#FF8000"></span>Calculation<span class="idx-num">00</span></a>
+      <a href="#app-grapher"><span class="dot" style="background:#50B849"></span>Grapher<span class="idx-num">01</span></a>
+      <a href="#app-gameboy"><span class="dot" style="background:#8E24AA"></span>Game Boy<span class="idx-num">21</span></a>
+      <a href="#app-ai"><span class="dot" style="background:#00897B"></span>AI<span class="idx-num">23</span></a>
+      <a href="#app-statistics"><span class="dot" style="background:#E65100"></span>Statistics<span class="idx-num">04</span></a>
+      <a href="#app-calculus"><span class="dot" style="background:#6A1B9A"></span>Calculus<span class="idx-num">03</span></a>
+      <a href="#app-equations"><span class="dot" style="background:#1565C0"></span>Equations<span class="idx-num">02</span></a>
+      <a href="#app-probability"><span class="dot" style="background:#00897B"></span>Probability<span class="idx-num">05</span></a>
+      <a href="#app-regression"><span class="dot" style="background:#BF360C"></span>Regression<span class="idx-num">06</span></a>
+      <a href="#app-settings"><span class="dot" style="background:#546E7A"></span>Settings<span class="idx-num">10</span></a>
+      <a href="#app-sequences"><span class="dot" style="background:#1B5E20"></span>Sequences<span class="idx-num">07</span></a>
+    </nav>
+
+    <!-- ============================================================
+         1. Calculation
+         ============================================================ -->
+
+    <article class="app-plate" id="app-calculation" style="--app-accent:#FF8000">
+      <div class="app-plate-head">
+        <span class="app-eyebrow">APP 00</span>
+        <h2>Calculation</h2>
+      </div>
+      <details class="app-jump">
+        <summary>App index</summary>
+        <div class="app-jump-list">
+          <a href="#app-grapher"><span class="dot" style="background:#50B849"></span>Grapher<span class="idx-num">01</span></a>
+          <a href="#app-gameboy"><span class="dot" style="background:#8E24AA"></span>Game Boy<span class="idx-num">21</span></a>
+          <a href="#app-ai"><span class="dot" style="background:#00897B"></span>AI<span class="idx-num">23</span></a>
+          <a href="#app-statistics"><span class="dot" style="background:#E65100"></span>Statistics<span class="idx-num">04</span></a>
+          <a href="#app-calculus"><span class="dot" style="background:#6A1B9A"></span>Calculus<span class="idx-num">03</span></a>
+          <a class="app-jump-all" href="#app-index">See all 11 apps</a>
+        </div>
+      </details>
+      <p class="app-sub">
+        The scientific calculator, exact. Fractions stay fractions, results are typeset rather
+        than printed, and the last fifty calculations are one key away.
+      </p>
+
+      <div class="app-shots" data-shots="3">
+        <figure class="shot">
+          <div class="shot-titlebar"><span class="tick"></span><span class="tick"></span><span class="shot-idx">1/3</span></div>
+          <div class="shot-frame" data-img="/assets/img/apps/calculation-1.webp"><img src="/assets/img/apps/calculation-1.webp" alt="calculation-1.webp" loading="lazy" decoding="async"></div>
+          <figcaption class="shot-cap">Enter 1/3 + 1/6, get a real fraction: 1/2, typeset.</figcaption>
+        </figure>
+
+        <figure class="shot">
+          <div class="shot-titlebar"><span class="tick"></span><span class="tick"></span><span class="shot-idx">2/3</span></div>
+          <div class="shot-frame" data-img="/assets/img/apps/calculation-2.webp"><img src="/assets/img/apps/calculation-2.webp" alt="calculation-2.webp" loading="lazy" decoding="async"></div>
+          <figcaption class="shot-cap">One key flips exact, to periodic, to a 200-digit decimal.</figcaption>
+        </figure>
+
+        <figure class="shot">
+          <div class="shot-titlebar"><span class="tick"></span><span class="tick"></span><span class="shot-idx">3/3</span></div>
+          <div class="shot-frame" data-img="/assets/img/apps/calculation-3.webp"><img src="/assets/img/apps/calculation-3.webp" alt="calculation-3.webp" loading="lazy" decoding="async"></div>
+          <figcaption class="shot-cap">Step-by-step mode breaks the arithmetic into atomic transformations.</figcaption>
+        </figure>
+      </div>
+
+      <ul class="app-caps">
+        <li>Exact symbolic and decimal evaluation via the CAS</li>
+        <li>Stacked fractions, roots, powers and trig, typeset</li>
+        <li>Fifty-entry history with expression recall</li>
+        <li>Variables A to F stored to flash</li>
+        <li>Prime factorisation</li>
+      </ul>
+      <div class="app-cta">
+        <a class="btn" href="/#waitlist">Join the Launch Waitlist</a>
+      </div>
+    </article>
+
+    <!-- ============================================================
+         2. Grapher
+         ============================================================ -->
+
+    <article class="app-plate" id="app-grapher" style="--app-accent:#50B849">
+      <div class="app-plate-head">
+        <span class="app-eyebrow">APP 01</span>
+        <h2>Grapher</h2>
+      </div>
+      <details class="app-jump">
+        <summary>App index</summary>
+        <div class="app-jump-list">
+          <a href="#app-gameboy"><span class="dot" style="background:#8E24AA"></span>Game Boy<span class="idx-num">21</span></a>
+          <a href="#app-ai"><span class="dot" style="background:#00897B"></span>AI<span class="idx-num">23</span></a>
+          <a href="#app-statistics"><span class="dot" style="background:#E65100"></span>Statistics<span class="idx-num">04</span></a>
+          <a href="#app-calculus"><span class="dot" style="background:#6A1B9A"></span>Calculus<span class="idx-num">03</span></a>
+          <a href="#app-equations"><span class="dot" style="background:#1565C0"></span>Equations<span class="idx-num">02</span></a>
+          <a class="app-jump-all" href="#app-index">See all 11 apps</a>
+        </div>
+      </details>
+      <p class="app-sub">
+        Plot several relations at once including implicit curves and shaded inequalities, then
+        trace them and snap to the points that matter.
+      </p>
+
+      <div class="app-shots" data-shots="3">
+        <figure class="shot">
+          <div class="shot-titlebar"><span class="tick"></span><span class="tick"></span><span class="shot-idx">1/3</span></div>
+          <div class="shot-frame" data-img="/assets/img/apps/grapher-1.webp"><img src="/assets/img/apps/grapher-1.webp" alt="grapher-1.webp" loading="lazy" decoding="async"></div>
+          <figcaption class="shot-cap">An explicit curve, a line, an implicit circle and a shaded region on one grid.</figcaption>
+        </figure>
+
+        <figure class="shot">
+          <div class="shot-titlebar"><span class="tick"></span><span class="tick"></span><span class="shot-idx">2/3</span></div>
+          <div class="shot-frame" data-img="/assets/img/apps/grapher-2.webp"><img src="/assets/img/apps/grapher-2.webp" alt="grapher-2.webp" loading="lazy" decoding="async"></div>
+          <figcaption class="shot-cap">Trace an implicit curve: the readout follows, the curve stays put.</figcaption>
+        </figure>
+
+        <figure class="shot">
+          <div class="shot-titlebar"><span class="tick"></span><span class="tick"></span><span class="shot-idx">3/3</span></div>
+          <div class="shot-frame" data-img="/assets/img/apps/grapher-3.webp"><img src="/assets/img/apps/grapher-3.webp" alt="grapher-3.webp" loading="lazy" decoding="async"></div>
+          <figcaption class="shot-cap">Roots, extrema and intersections found for you and marked on the curve.</figcaption>
+        </figure>
+      </div>
+
+      <ul class="app-caps">
+        <li>y = f(x), x = f(y), implicit relations and inequalities</li>
+        <li>Roots, minima, maxima, y-intercepts and intersections</li>
+        <li>Tangent and integral overlays drawn on the curve</li>
+        <li>Casio split view with numbered slots and a value table</li>
+      </ul>
+      <div class="app-cta">
+        <a class="btn" href="/#waitlist">Join the Launch Waitlist</a>
+      </div>
+    </article>
+
+    <!-- ============================================================
+         3. Game Boy
+         ============================================================ -->
+
+    <article class="app-plate" id="app-gameboy" style="--app-accent:#8E24AA">
+      <div class="app-plate-head">
+        <span class="app-eyebrow">APP 21</span>
+        <h2>Game Boy</h2>
+        <span class="app-motion">Motion: ship as MP4</span>
+      </div>
+      <details class="app-jump">
+        <summary>App index</summary>
+        <div class="app-jump-list">
+          <a href="#app-ai"><span class="dot" style="background:#00897B"></span>AI<span class="idx-num">23</span></a>
+          <a href="#app-statistics"><span class="dot" style="background:#E65100"></span>Statistics<span class="idx-num">04</span></a>
+          <a href="#app-calculus"><span class="dot" style="background:#6A1B9A"></span>Calculus<span class="idx-num">03</span></a>
+          <a href="#app-equations"><span class="dot" style="background:#1565C0"></span>Equations<span class="idx-num">02</span></a>
+          <a href="#app-probability"><span class="dot" style="background:#00897B"></span>Probability<span class="idx-num">05</span></a>
+          <a class="app-jump-all" href="#app-index">See all 11 apps</a>
+        </div>
+      </details>
+      <p class="app-sub">
+        A Game Boy and Game Boy Color core, driven by the calculator keypad. Load a ROM from the
+        card and the saves go back to the card.
+      </p>
+
+      <div class="app-shots" data-shots="3">
+        <figure class="shot">
+          <div class="shot-titlebar"><span class="tick"></span><span class="tick"></span><span class="shot-idx">1/3</span></div>
+          <div class="shot-frame" data-img="/assets/img/apps/gameboy-1.webp"><img src="/assets/img/apps/gameboy-1.webp" alt="gameboy-1.webp" loading="lazy" decoding="async"></div>
+          <figcaption class="shot-cap">Pick a ROM from the card; the list wears the same theme as the OS.</figcaption>
+        </figure>
+
+        <figure class="shot">
+          <div class="shot-titlebar"><span class="tick"></span><span class="tick"></span><span class="shot-idx">2/3</span></div>
+          <div class="shot-frame" data-img="/assets/img/apps/gameboy-2.webp"><img src="/assets/img/apps/gameboy-2.webp" alt="gameboy-2.webp" loading="lazy" decoding="async"></div>
+          <figcaption class="shot-cap">Colour titles run at the right palette, not the four-shade grey.</figcaption>
+        </figure>
+
+        <figure class="shot">
+          <div class="shot-titlebar"><span class="tick"></span><span class="tick"></span><span class="shot-idx">3/3</span></div>
+          <div class="shot-frame" data-img="/assets/img/apps/gameboy-3.webp"><img src="/assets/img/apps/gameboy-3.webp" alt="gameboy-3.webp" loading="lazy" decoding="async"></div>
+          <figcaption class="shot-cap">DMG and CGB cores, the calculator keypad as a controller.</figcaption>
+        </figure>
+      </div>
+
+      <ul class="app-caps">
+        <li>Game Boy and Game Boy Color</li>
+        <li>MBC1, MBC2, MBC3 and MBC5 mappers, plus RTC</li>
+        <li>Cartridge save files written back to the card</li>
+        <li>Homebrew ROMs only: no commercial titles can ship with the site</li>
+      </ul>
+      <div class="app-cta">
+        <a class="btn" href="/#waitlist">Join the Launch Waitlist</a>
+      </div>
+    </article>
+
+    <!-- ============================================================
+         4. AI
+         ============================================================ -->
+
+    <article class="app-plate" id="app-ai" style="--app-accent:#00897B">
+      <div class="app-plate-head">
+        <span class="app-eyebrow">APP 23</span>
+        <h2>AI</h2>
+      </div>
+      <details class="app-jump">
+        <summary>App index</summary>
+        <div class="app-jump-list">
+          <a href="#app-statistics"><span class="dot" style="background:#E65100"></span>Statistics<span class="idx-num">04</span></a>
+          <a href="#app-calculus"><span class="dot" style="background:#6A1B9A"></span>Calculus<span class="idx-num">03</span></a>
+          <a href="#app-equations"><span class="dot" style="background:#1565C0"></span>Equations<span class="idx-num">02</span></a>
+          <a href="#app-probability"><span class="dot" style="background:#00897B"></span>Probability<span class="idx-num">05</span></a>
+          <a href="#app-regression"><span class="dot" style="background:#BF360C"></span>Regression<span class="idx-num">06</span></a>
+          <a class="app-jump-all" href="#app-index">See all 11 apps</a>
+        </div>
+      </details>
+      <p class="app-sub">
+        An assistant that lives on the device and answers in markdown: watch it stream, then page
+        through the answer with the same keys you use everywhere else.
+      </p>
+
+      <div class="app-shots" data-shots="3">
+        <figure class="shot">
+          <div class="shot-titlebar"><span class="tick"></span><span class="tick"></span><span class="shot-idx">1/3</span></div>
+          <div class="shot-frame" data-img="/assets/img/apps/ai-1.webp"><img src="/assets/img/apps/ai-1.webp" alt="ai-1.webp" loading="lazy" decoding="async"></div>
+          <figcaption class="shot-cap">The answer arrives as markdown and is laid out, not dumped as plain text.</figcaption>
+        </figure>
+
+        <figure class="shot">
+          <div class="shot-titlebar"><span class="tick"></span><span class="tick"></span><span class="shot-idx">2/3</span></div>
+          <div class="shot-frame" data-img="/assets/img/apps/ai-2.webp"><img src="/assets/img/apps/ai-2.webp" alt="ai-2.webp" loading="lazy" decoding="async"></div>
+          <figcaption class="shot-cap">Long answers paginate; left and right walk the pages.</figcaption>
+        </figure>
+
+        <figure class="shot">
+          <div class="shot-titlebar"><span class="tick"></span><span class="tick"></span><span class="shot-idx">3/3</span></div>
+          <div class="shot-frame" data-img="/assets/img/apps/ai-3.webp"><img src="/assets/img/apps/ai-3.webp" alt="ai-3.webp" loading="lazy" decoding="async"></div>
+          <figcaption class="shot-cap">Pick the model on the device; the choice persists.</figcaption>
+        </figure>
+      </div>
+
+      <ul class="app-caps">
+        <li>Markdown rendered and paginated on the device</li>
+        <li>Answers stream in token by token</li>
+        <li>Every answer saved as a .md file on the card</li>
+        <li>Prompts typed on the calculator keypad</li>
+      </ul>
+      <div class="app-cta">
+        <a class="btn" href="/#waitlist">Join the Launch Waitlist</a>
+      </div>
+    </article>
+
+    <!-- ============================================================
+         5. Statistics
+         ============================================================ -->
+
+    <article class="app-plate" id="app-statistics" style="--app-accent:#E65100">
+      <div class="app-plate-head">
+        <span class="app-eyebrow">APP 04</span>
+        <h2>Statistics</h2>
+      </div>
+      <details class="app-jump">
+        <summary>App index</summary>
+        <div class="app-jump-list">
+          <a href="#app-calculus"><span class="dot" style="background:#6A1B9A"></span>Calculus<span class="idx-num">03</span></a>
+          <a href="#app-equations"><span class="dot" style="background:#1565C0"></span>Equations<span class="idx-num">02</span></a>
+          <a href="#app-probability"><span class="dot" style="background:#00897B"></span>Probability<span class="idx-num">05</span></a>
+          <a href="#app-regression"><span class="dot" style="background:#BF360C"></span>Regression<span class="idx-num">06</span></a>
+          <a href="#app-settings"><span class="dot" style="background:#546E7A"></span>Settings<span class="idx-num">10</span></a>
+          <a class="app-jump-all" href="#app-index">See all 11 apps</a>
+        </div>
+      </details>
+      <p class="app-sub">
+        Type in values and their frequencies, and get the descriptive statistics and a histogram
+        back.
+      </p>
+
+      <div class="app-shots" data-shots="3">
+        <figure class="shot">
+          <div class="shot-titlebar"><span class="tick"></span><span class="tick"></span><span class="shot-idx">1/3</span></div>
+          <div class="shot-frame" data-img="/assets/img/apps/statistics-1.webp"><img src="/assets/img/apps/statistics-1.webp" alt="statistics-1.webp" loading="lazy" decoding="async"></div>
+          <figcaption class="shot-cap">A value column and a frequency column, twenty rows deep.</figcaption>
+        </figure>
+
+        <figure class="shot">
+          <div class="shot-titlebar"><span class="tick"></span><span class="tick"></span><span class="shot-idx">2/3</span></div>
+          <div class="shot-frame" data-img="/assets/img/apps/statistics-2.webp"><img src="/assets/img/apps/statistics-2.webp" alt="statistics-2.webp" loading="lazy" decoding="async"></div>
+          <figcaption class="shot-cap">Seven frequency-weighted statistics, recomputed as you type.</figcaption>
+        </figure>
+
+        <figure class="shot">
+          <div class="shot-titlebar"><span class="tick"></span><span class="tick"></span><span class="shot-idx">3/3</span></div>
+          <div class="shot-frame" data-img="/assets/img/apps/statistics-3.webp"><img src="/assets/img/apps/statistics-3.webp" alt="statistics-3.webp" loading="lazy" decoding="async"></div>
+          <figcaption class="shot-cap">The distribution drawn from the same numbers in the table.</figcaption>
+        </figure>
+      </div>
+
+      <ul class="app-caps">
+        <li>Twenty-row value and frequency table</li>
+        <li>Mean, median, standard deviation, min, max, sum, n</li>
+        <li>Live histogram on the graph tab</li>
+      </ul>
+      <div class="app-cta">
+        <a class="btn" href="/#waitlist">Join the Launch Waitlist</a>
+      </div>
+    </article>
+
+    <!-- ============================================================
+         6. Calculus
+         ============================================================ -->
+
+    <article class="app-plate" id="app-calculus" style="--app-accent:#6A1B9A">
+      <div class="app-plate-head">
+        <span class="app-eyebrow">APP 03</span>
+        <h2>Calculus</h2>
+      </div>
+      <details class="app-jump">
+        <summary>App index</summary>
+        <div class="app-jump-list">
+          <a href="#app-equations"><span class="dot" style="background:#1565C0"></span>Equations<span class="idx-num">02</span></a>
+          <a href="#app-probability"><span class="dot" style="background:#00897B"></span>Probability<span class="idx-num">05</span></a>
+          <a href="#app-regression"><span class="dot" style="background:#BF360C"></span>Regression<span class="idx-num">06</span></a>
+          <a href="#app-settings"><span class="dot" style="background:#546E7A"></span>Settings<span class="idx-num">10</span></a>
+          <a href="#app-sequences"><span class="dot" style="background:#1B5E20"></span>Sequences<span class="idx-num">07</span></a>
+          <a class="app-jump-all" href="#app-index">See all 11 apps</a>
+        </div>
+      </details>
+      <p class="app-sub">
+        Derivatives and indefinite integrals, with the working shown when the native solver can
+        prove it agrees with the CAS.
+      </p>
+
+      <div class="app-shots" data-shots="3">
+        <figure class="shot">
+          <div class="shot-titlebar"><span class="tick"></span><span class="tick"></span><span class="shot-idx">1/3</span></div>
+          <div class="shot-frame" data-img="/assets/img/apps/calculus-1.webp"><img src="/assets/img/apps/calculus-1.webp" alt="calculus-1.webp" loading="lazy" decoding="async"></div>
+          <figcaption class="shot-cap">A chain of derivatives, typeset properly with a fraction bar.</figcaption>
+        </figure>
+
+        <figure class="shot">
+          <div class="shot-titlebar"><span class="tick"></span><span class="tick"></span><span class="shot-idx">2/3</span></div>
+          <div class="shot-frame" data-img="/assets/img/apps/calculus-2.webp"><img src="/assets/img/apps/calculus-2.webp" alt="calculus-2.webp" loading="lazy" decoding="async"></div>
+          <figcaption class="shot-cap">Integration by parts, worked out symbolically.</figcaption>
+        </figure>
+
+        <figure class="shot">
+          <div class="shot-titlebar"><span class="tick"></span><span class="tick"></span><span class="shot-idx">3/3</span></div>
+          <div class="shot-frame" data-img="/assets/img/apps/calculus-3.webp"><img src="/assets/img/apps/calculus-3.webp" alt="calculus-3.webp" loading="lazy" decoding="async"></div>
+          <figcaption class="shot-cap">When there is no closed form, it says so and shows the integral.</figcaption>
+        </figure>
+      </div>
+
+      <ul class="app-caps">
+        <li>Symbolic differentiation and indefinite integration</li>
+        <li>Results typeset with real fraction bars and radicals</li>
+        <li>Step-by-step view, shown only when it verifies against the CAS</li>
+      </ul>
+      <div class="app-cta">
+        <a class="btn" href="/#waitlist">Join the Launch Waitlist</a>
+      </div>
+    </article>
+
+    <!-- ============================================================
+         7. Equations
+         ============================================================ -->
+
+    <article class="app-plate" id="app-equations" style="--app-accent:#1565C0">
+      <div class="app-plate-head">
+        <span class="app-eyebrow">APP 02</span>
+        <h2>Equations</h2>
+      </div>
+      <details class="app-jump">
+        <summary>App index</summary>
+        <div class="app-jump-list">
+          <a href="#app-probability"><span class="dot" style="background:#00897B"></span>Probability<span class="idx-num">05</span></a>
+          <a href="#app-regression"><span class="dot" style="background:#BF360C"></span>Regression<span class="idx-num">06</span></a>
+          <a href="#app-settings"><span class="dot" style="background:#546E7A"></span>Settings<span class="idx-num">10</span></a>
+          <a href="#app-sequences"><span class="dot" style="background:#1B5E20"></span>Sequences<span class="idx-num">07</span></a>
+          <a href="#app-calculation"><span class="dot" style="background:#FF8000"></span>Calculation<span class="idx-num">00</span></a>
+          <a class="app-jump-all" href="#app-index">See all 11 apps</a>
+        </div>
+      </details>
+      <p class="app-sub">
+        Solve one equation or a system of up to three, exactly, with the steps laid out when the
+        solver can justify them.
+      </p>
+
+      <div class="app-shots" data-shots="3">
+        <figure class="shot">
+          <div class="shot-titlebar"><span class="tick"></span><span class="tick"></span><span class="shot-idx">1/3</span></div>
+          <div class="shot-frame" data-img="/assets/img/apps/equations-1.webp"><img src="/assets/img/apps/equations-1.webp" alt="equations-1.webp" loading="lazy" decoding="async"></div>
+          <figcaption class="shot-cap">Exact roots, not decimal approximations.</figcaption>
+        </figure>
+
+        <figure class="shot">
+          <div class="shot-titlebar"><span class="tick"></span><span class="tick"></span><span class="shot-idx">2/3</span></div>
+          <div class="shot-frame" data-img="/assets/img/apps/equations-2.webp">
+            <span class="shot-desc">The steps view showing the factored form, with the factor highlighted as the step that just changed.
+              <span class="shot-path">/assets/img/apps/equations-2.webp</span></span>
+          </div>
+          <figcaption class="shot-cap">Each step highlights exactly what changed.</figcaption>
+        </figure>
+
+        <figure class="shot">
+          <div class="shot-titlebar"><span class="tick"></span><span class="tick"></span><span class="shot-idx">3/3</span></div>
+          <div class="shot-frame" data-img="/assets/img/apps/equations-3.webp"><img src="/assets/img/apps/equations-3.webp" alt="equations-3.webp" loading="lazy" decoding="async"></div>
+          <figcaption class="shot-cap">Systems up to three equations in x, y and z.</figcaption>
+        </figure>
+      </div>
+
+      <ul class="app-caps">
+        <li>Up to three equations, solved exactly</li>
+        <li>Polynomial, exponential and logarithmic templates</li>
+        <li>Quadratic and cubic step-by-step solving</li>
+        <li>Complex roots when the domain is switched on</li>
+      </ul>
+      <div class="app-cta">
+        <a class="btn" href="/#waitlist">Join the Launch Waitlist</a>
+      </div>
+    </article>
+
+    <!-- ============================================================
+         8. Probability
+         ============================================================ -->
+
+    <article class="app-plate" id="app-probability" style="--app-accent:#00897B">
+      <div class="app-plate-head">
+        <span class="app-eyebrow">APP 05</span>
+        <h2>Probability</h2>
+      </div>
+      <details class="app-jump">
+        <summary>App index</summary>
+        <div class="app-jump-list">
+          <a href="#app-regression"><span class="dot" style="background:#BF360C"></span>Regression<span class="idx-num">06</span></a>
+          <a href="#app-settings"><span class="dot" style="background:#546E7A"></span>Settings<span class="idx-num">10</span></a>
+          <a href="#app-sequences"><span class="dot" style="background:#1B5E20"></span>Sequences<span class="idx-num">07</span></a>
+          <a href="#app-calculation"><span class="dot" style="background:#FF8000"></span>Calculation<span class="idx-num">00</span></a>
+          <a href="#app-grapher"><span class="dot" style="background:#50B849"></span>Grapher<span class="idx-num">01</span></a>
+          <a class="app-jump-all" href="#app-index">See all 11 apps</a>
+        </div>
+      </details>
+      <p class="app-sub">
+        Set the mean, the spread and a boundary, and read the probability straight off the curve.
+      </p>
+
+      <div class="app-shots" data-shots="3">
+        <figure class="shot">
+          <div class="shot-titlebar"><span class="tick"></span><span class="tick"></span><span class="shot-idx">1/3</span></div>
+          <div class="shot-frame" data-img="/assets/img/apps/probability-1.webp"><img src="/assets/img/apps/probability-1.webp" alt="probability-1.webp" loading="lazy" decoding="async"></div>
+          <figcaption class="shot-cap">A shaded tail and both numbers, read off the same curve.</figcaption>
+        </figure>
+
+        <figure class="shot">
+          <div class="shot-titlebar"><span class="tick"></span><span class="tick"></span><span class="shot-idx">2/3</span></div>
+          <div class="shot-frame" data-img="/assets/img/apps/probability-2.webp"><img src="/assets/img/apps/probability-2.webp" alt="probability-2.webp" loading="lazy" decoding="async"></div>
+          <figcaption class="shot-cap">Any mean and spread, redrawn as you change them.</figcaption>
+        </figure>
+
+        <figure class="shot">
+          <div class="shot-titlebar"><span class="tick"></span><span class="tick"></span><span class="shot-idx">3/3</span></div>
+          <div class="shot-frame" data-img="/assets/img/apps/probability-3.webp"><img src="/assets/img/apps/probability-3.webp" alt="probability-3.webp" loading="lazy" decoding="async"></div>
+          <figcaption class="shot-cap">Three parameters, edited in place.</figcaption>
+        </figure>
+      </div>
+
+      <ul class="app-caps">
+        <li>Normal density and cumulative probability</li>
+        <li>Shaded area up to the boundary</li>
+        <li>Values shown to six decimal places</li>
+      </ul>
+      <div class="app-cta">
+        <a class="btn" href="/#waitlist">Join the Launch Waitlist</a>
+      </div>
+    </article>
+
+    <!-- ============================================================
+         9. Regression
+         ============================================================ -->
+
+    <article class="app-plate" id="app-regression" style="--app-accent:#BF360C">
+      <div class="app-plate-head">
+        <span class="app-eyebrow">APP 06</span>
+        <h2>Regression</h2>
+      </div>
+      <details class="app-jump">
+        <summary>App index</summary>
+        <div class="app-jump-list">
+          <a href="#app-settings"><span class="dot" style="background:#546E7A"></span>Settings<span class="idx-num">10</span></a>
+          <a href="#app-sequences"><span class="dot" style="background:#1B5E20"></span>Sequences<span class="idx-num">07</span></a>
+          <a href="#app-calculation"><span class="dot" style="background:#FF8000"></span>Calculation<span class="idx-num">00</span></a>
+          <a href="#app-grapher"><span class="dot" style="background:#50B849"></span>Grapher<span class="idx-num">01</span></a>
+          <a href="#app-gameboy"><span class="dot" style="background:#8E24AA"></span>Game Boy<span class="idx-num">21</span></a>
+          <a class="app-jump-all" href="#app-index">See all 11 apps</a>
+        </div>
+      </details>
+      <p class="app-sub">
+        Enter paired data and fit a straight line or a parabola, with the fit judged in front of
+        you.
+      </p>
+
+      <div class="app-shots" data-shots="3">
+        <figure class="shot">
+          <div class="shot-titlebar"><span class="tick"></span><span class="tick"></span><span class="shot-idx">1/3</span></div>
+          <div class="shot-frame" data-img="/assets/img/apps/regression-1.webp">
+            <span class="shot-desc">The equation tab after a quadratic fit: the equation, each coefficient, the coefficient of determination and the point count.
+              <span class="shot-path">/assets/img/apps/regression-1.webp</span></span>
+          </div>
+          <figcaption class="shot-cap">The fitted equation and its coefficients, spelled out.</figcaption>
+        </figure>
+
+        <figure class="shot">
+          <div class="shot-titlebar"><span class="tick"></span><span class="tick"></span><span class="shot-idx">2/3</span></div>
+          <div class="shot-frame" data-img="/assets/img/apps/regression-2.webp"><img src="/assets/img/apps/regression-2.webp" alt="The graph tab: the entered points as scatter and the fitted curve passing through them." loading="lazy" decoding="async"></div>
+          <figcaption class="shot-cap">The data and the fit on the same axes.</figcaption>
+        </figure>
+
+        <figure class="shot">
+          <div class="shot-titlebar"><span class="tick"></span><span class="tick"></span><span class="shot-idx">3/3</span></div>
+          <div class="shot-frame" data-img="/assets/img/apps/regression-3.webp">
+            <span class="shot-desc">The same graph after switching the model, the quadratic curve replaced by a straight line.
+              <span class="shot-path">/assets/img/apps/regression-3.webp</span></span>
+          </div>
+          <figcaption class="shot-cap">Switch models and watch the fit change.</figcaption>
+        </figure>
+      </div>
+
+      <ul class="app-caps">
+        <li>Linear and quadratic least squares</li>
+        <li>Coefficient of determination shown for both</li>
+        <li>Scatter plot with the fitted curve</li>
+      </ul>
+      <div class="app-cta">
+        <a class="btn" href="/#waitlist">Join the Launch Waitlist</a>
+      </div>
+    </article>
+
+    <!-- ============================================================
+         10. Settings
+         ============================================================ -->
+
+    <article class="app-plate" id="app-settings" style="--app-accent:#546E7A">
+      <div class="app-plate-head">
+        <span class="app-eyebrow">APP 10</span>
+        <h2>Settings</h2>
+      </div>
+      <details class="app-jump">
+        <summary>App index</summary>
+        <div class="app-jump-list">
+          <a href="#app-sequences"><span class="dot" style="background:#1B5E20"></span>Sequences<span class="idx-num">07</span></a>
+          <a href="#app-calculation"><span class="dot" style="background:#FF8000"></span>Calculation<span class="idx-num">00</span></a>
+          <a href="#app-grapher"><span class="dot" style="background:#50B849"></span>Grapher<span class="idx-num">01</span></a>
+          <a href="#app-gameboy"><span class="dot" style="background:#8E24AA"></span>Game Boy<span class="idx-num">21</span></a>
+          <a href="#app-ai"><span class="dot" style="background:#00897B"></span>AI<span class="idx-num">23</span></a>
+          <a class="app-jump-all" href="#app-index">See all 11 apps</a>
+        </div>
+      </details>
+      <p class="app-sub">
+        Angle mode, precision, the theme, and the Wi-Fi setup that runs on the device itself.
+      </p>
+
+      <div class="app-shots" data-shots="3">
+        <figure class="shot">
+          <div class="shot-titlebar"><span class="tick"></span><span class="tick"></span><span class="shot-idx">1/3</span></div>
+          <div class="shot-frame" data-img="/assets/img/apps/settings-1.webp"><img src="/assets/img/apps/settings-1.webp" alt="settings-1.webp" loading="lazy" decoding="async"></div>
+          <figcaption class="shot-cap">Angle mode, complex numbers, precision, theme: all in one list.</figcaption>
+        </figure>
+
+        <figure class="shot">
+          <div class="shot-titlebar"><span class="tick"></span><span class="tick"></span><span class="shot-idx">2/3</span></div>
+          <div class="shot-frame" data-img="/assets/img/apps/settings-2.webp">
+            <span class="shot-desc">The Wi-Fi sub-screen with the setup portal running: the network name, the address to open, and how many devices have joined.
+              <span class="shot-path">/assets/img/apps/settings-2.webp</span></span>
+          </div>
+          <figcaption class="shot-cap">The calculator hosts its own setup network for your phone.</figcaption>
+        </figure>
+
+        <figure class="shot">
+          <div class="shot-titlebar"><span class="tick"></span><span class="tick"></span><span class="shot-idx">3/3</span></div>
+          <div class="shot-frame" data-img="/assets/img/apps/settings-3.webp"><img src="/assets/img/apps/settings-3.webp" alt="settings-3.webp" loading="lazy" decoding="async"></div>
+          <figcaption class="shot-cap">Two full themes, switched on the device.</figcaption>
+        </figure>
+      </div>
+
+      <ul class="app-caps">
+        <li>Degrees and radians</li>
+        <li>Six to twelve significant figures</li>
+        <li>NumOS and Casio themes</li>
+        <li>Wi-Fi provisioning from the device</li>
+        <li>Settings persist to flash</li>
+      </ul>
+      <div class="app-cta">
+        <a class="btn" href="/#waitlist">Join the Launch Waitlist</a>
+      </div>
+    </article>
+
+    <!-- ============================================================
+         11. Sequences no capability claim
+         ============================================================ -->
+
+    <article class="app-plate" id="app-sequences" style="--app-accent:#1B5E20">
+      <div class="app-plate-head">
+        <span class="app-eyebrow">APP 07</span>
+        <h2>Sequences</h2>
+      </div>
+      <details class="app-jump">
+        <summary>App index</summary>
+        <div class="app-jump-list">
+          <a href="#app-calculation"><span class="dot" style="background:#FF8000"></span>Calculation<span class="idx-num">00</span></a>
+          <a href="#app-grapher"><span class="dot" style="background:#50B849"></span>Grapher<span class="idx-num">01</span></a>
+          <a href="#app-gameboy"><span class="dot" style="background:#8E24AA"></span>Game Boy<span class="idx-num">21</span></a>
+          <a href="#app-ai"><span class="dot" style="background:#00897B"></span>AI<span class="idx-num">23</span></a>
+          <a href="#app-statistics"><span class="dot" style="background:#E65100"></span>Statistics<span class="idx-num">04</span></a>
+          <a class="app-jump-all" href="#app-index">See all 11 apps</a>
+        </div>
+      </details>
+      <p class="app-sub">
+        A two-sequence table.
+      </p>
+
+      <div class="app-shots" data-shots="2">
+        <figure class="shot">
+          <div class="shot-titlebar"><span class="tick"></span><span class="tick"></span><span class="shot-idx">1/2</span></div>
+          <div class="shot-frame" data-img="/assets/img/apps/sequences-1.webp"><img src="/assets/img/apps/sequences-1.webp" alt="sequences-1.webp" loading="lazy" decoding="async"></div>
+          <figcaption class="shot-cap">Two sequences, defined as short formulas.</figcaption>
+        </figure>
+
+        <figure class="shot">
+          <div class="shot-titlebar"><span class="tick"></span><span class="tick"></span><span class="shot-idx">2/2</span></div>
+          <div class="shot-frame" data-img="/assets/img/apps/sequences-2.webp"><img src="/assets/img/apps/sequences-2.webp" alt="sequences-2.webp" loading="lazy" decoding="async"></div>
+          <figcaption class="shot-cap">A table of the first twenty terms.</figcaption>
+        </figure>
+      </div>
+
+      <div class="app-noclaim">
+        <strong>No claim is made about this app on this page.</strong>
+        The formula reader only understands a handful of shapes (n, n squared, a times n plus b, or
+        a constant) and silently mis-reads anything else, so it cannot honestly be shown doing more
+        than the two rows above.
+      </div>
+      <div class="app-cta">
+        <a class="btn" href="/#waitlist">Join the Launch Waitlist</a>
+      </div>
+    </article>
+
+    <section class="apps-soon" id="coming-soon">
+      <h2>Coming soon</h2>
+      <p class="apps-soon-note">These run on the device. They cannot be captured from the
+        emulator yet, so they are listed here without screenshots rather than shown as
+        something they are not.</p>
+      <ul class="apps-soon-list">
+        <li><span class="soon-dot" style="background:#F57F17"></span><span class="soon-name">Python</span><span class="soon-desc">A script editor and a console, on the device.</span><span class="soon-id">08</span></li>
+        <li><span class="soon-dot" style="background:#7B1FA2"></span><span class="soon-name">Matrices</span><span class="soon-desc">Three matrix slots up to five by five: add, multiply, determinants and inverses.</span><span class="soon-id">09</span></li>
+        <li><span class="soon-dot" style="background:#2E7D32"></span><span class="soon-name">Chemistry</span><span class="soon-desc">All 118 elements with a deep-dive profile, a molar-mass calculator that understands real formulae, and an equation balancer that works in exact fractions.</span><span class="soon-id">11</span></li>
+        <li><span class="soon-dot" style="background:#455A64"></span><span class="soon-name">Bridge</span><span class="soon-desc">Build a truss out of wood, steel and cable, then drive a truck across it and watch which beams give up first.</span><span class="soon-id">12</span></li>
+        <li><span class="soon-dot" style="background:#F9A825"></span><span class="soon-name">Circuit</span><span class="soon-desc">Place components on a grid, run it, and watch the voltages and currents actually happen.</span><span class="soon-id">13</span></li>
+        <li><span class="soon-dot" style="background:#1E88E5"></span><span class="soon-name">Fluid 2D</span><span class="soon-desc">A real incompressible fluid solver: drag the cursor through it, inject dye, and watch the eddies hold together.</span><span class="soon-id">14</span></li>
+        <li><span class="soon-dot" style="background:#FF9800"></span><span class="soon-name">ParticleLab</span><span class="soon-desc">A falling-sand sandbox with thirty-one materials, real heat, phase changes and a working little electrical system.</span><span class="soon-id">15</span></li>
+        <li><span class="soon-dot" style="background:#9C27B0"></span><span class="soon-name">Neural Lab</span><span class="soon-desc">Train a small neural network on the calculator itself and watch the decision boundary take shape while the loss drops.</span><span class="soon-id">16</span></li>
+        <li><span class="soon-dot" style="background:#00BCD4"></span><span class="soon-name">OpticsLab</span><span class="soon-desc">A two-lens optical bench with genuine ray tracing on the screen and the paraxial numbers printed alongside it.</span><span class="soon-id">17</span></li>
+        <li><span class="soon-dot" style="background:#4CAF50"></span><span class="soon-name">NeoLang</span><span class="soon-desc">A small scripting language with the CAS wired into it: differentiation, solving, plotting and linear algebra in a few lines.</span><span class="soon-id">18</span></li>
+        <li><span class="soon-dot" style="background:#3F51B5"></span><span class="soon-name">Fractals</span><span class="soon-desc">Four fractals with deep zoom, drawn in passes so the picture sharpens instead of stalling.</span><span class="soon-id">19</span></li>
+      </ul>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-content">
+    <div class="footer-brand">
+      <b>absolut-CAS</b>
+      <small>© 2026 • Open Hardware Project</small>
+    </div>
+    <ul class="footer-links">
+      <li><a href="/">Back to Home</a></li>
+      <li><a href="/emulator/">Browser Emulator</a></li>
+      <li><a href="/#waitlist">Waitlist</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

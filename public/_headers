@@ -31,3 +31,12 @@
 
 /assets/*.js
   Cache-Control: public, max-age=0, must-revalidate
+
+# The NumOS WASM package is content-addressed: every filename carries a hash of
+# its own bytes, so a changed asset is a new URL and the whole directory can be
+# cached forever. The manifest is the only mutable file there.
+/emulator/numos/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/emulator/numos/numos-assets.json
+  Cache-Control: public, max-age=0, must-revalidate

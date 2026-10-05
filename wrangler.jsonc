@@ -7,16 +7,43 @@
   // reload-loops forever, and .git/ node_modules/ only stay out by ignore rules).
   "name": "absolutcas-com",
   "compatibility_date": "2026-10-02",
+
+  // Mailing list infrastructure. Adding `main` turns this from a static-only Worker into
+  // static + code. `run_worker_first` scopes the code to /api/* so every page request is
+  // still served straight off the assets with no Worker invocation.
+  "main": "src/worker.js",
+
   "assets": {
     "directory": "./public",
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
   },
-  // Attaches the apex (and www) to this Worker, replacing the stray Worker
-  // that currently 404s on both hostnames. Needs the zone on this account.
-  // Uncomment for the cutover deploy:
-  // "routes": [
-  //   { "pattern": "absolutcas.com", "custom_domain": true },
-  //   { "pattern": "www.absolutcas.com", "custom_domain": true }
-  // ],
+
+  // The master record for the list. Created 2026-10-04, region OC.
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "absolutcas-waitlist",
+      "database_id": "f8eb845a-6625-44a0-8bf6-73d3b5843f54"
+    }
+  ],
+
+  // Non-secret configuration. Secrets are set separately and never live in this file:
+  //   npx wrangler secret put BREVO_API_KEY       (required for any mail to send)
+  //   npx wrangler secret put TURNSTILE_SECRET    (optional; enables the bot challenge)
+  "vars": {
+    "MAIL_FROM": "list@absolutcas.com",
+    "BREVO_LIST_ID": "3"
+  },
+
+  // Attaches the apex (and www) to this Worker. Cutover deploy: enabled 2026-10-04.
+  // Routes, not custom_domain: both hostnames already carry proxy A records, and
+  // custom_domain refuses to attach while they exist (Cloudflare code 100117).
+  // A route intercepts matching requests on the zone without deleting DNS.
+  "routes": [
+    { "pattern": "absolutcas.com/*", "zone_name": "absolutcas.com" },
+    { "pattern": "www.absolutcas.com/*", "zone_name": "absolutcas.com" }
+  ],
   "observability": { "enabled": true }
 }
