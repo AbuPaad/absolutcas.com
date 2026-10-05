@@ -6,6 +6,9 @@
 
 Session goal: switch the site's hosting to Cloudflare.
 Status: **prepared and verified locally. Not deployed. Blocked on Cloudflare auth on this machine.**
+> **Superseded 2026-10-04** — Cloudflare auth was sorted out and the cutover shipped; the
+> `absolutcas-com` Worker now serves `absolutcas.com` and `www.absolutcas.com`. This line records the
+> state *at the time of writing*, not today's.
 
 ## What the site actually was before this session
 

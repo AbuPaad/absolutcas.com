@@ -112,3 +112,22 @@ drove the HTML.
 - 404 body says the board is at V2 while its ticker says V1 — carried over untouched.
 - No `og:image` / `twitter:card` on any page.
 - Orphaned images `assets/img/fx82.jpg` and `assets/img/plate-ink-paper.jpg` still deploy.
+
+## Deployed (2026-10-05)
+
+Committed `c248dab`, pushed to `origin/main`, then `npx wrangler deploy` from the repo root. Wrangler
+reported 6 new/modified assets uploaded (54 unchanged) `[404.html, index.html, apps/index.html,
+emulator/index.html, assets/site.css, assets/site.js]` — the same six files this record lists, with the
+rebuilt NumOS WASM bundle going along in the same commit because `numos-assets.json` now points at the
+new content hashes. Version ID `aa1e3020-9c93-44fe-8c57-9ec4055065b8`; both routes re-attached.
+
+Verified against the live origin after the edge settled (a first pass read stale bytes for `/apps/` and
+the 404 — Cloudflare asset propagation lag, not a failed upload; a cache-busted fetch already showed
+the new content):
+
+| URL | Result |
+|---|---|
+| `/` | 200, new title, **0 `<h1>`** (hero cut), no `$5`, `// HW Features` present |
+| `/apps/` | 200, 39,612 B, **0 figcaptions** (was 32) |
+| `/emulator/` | 200, 4,733 B, no subtitle |
+| unknown path | 404, no `err-wrap`, serves the restyled page (nav/section/footer + ticker) |
