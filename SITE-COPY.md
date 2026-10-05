@@ -70,7 +70,7 @@ File: `public/index.html`
 ### Head
 
 - **L0.1** title: `absolut-CAS: Your Casio does more now`
-- **L0.2** meta description: `A drop-in upgrade for the fx-82 and fx-991 calculators: Wi-Fi, CAS math, graphing, Game Boy core, and AI tools in your original shell.`
+- **L0.2** meta description: `A drop-in upgrade for casio scientific calculators: Wi-Fi, CAS math, graphing, Game Boy core, and AI tools in your original shell.`
 
 ### Nav
 
@@ -139,12 +139,13 @@ File: `public/index.html`
 
 - **L1.32** label: `// HARDWARE SPECIFICATIONS`
 - **L1.33** h2: `What's in the Drop-In Kit`
-- **L1.34** intro: `Designed as a clean swap for the ~350 million Casio fx-82 and fx-991 family calculators in circulation.`
+-[delete]** intro: `Designed as a clean swap for the ~350 million Casio fx-82 and fx-991 family calculators in circulation.`
 
 - **L1.35** row 1 — badge `DROP-IN PCB` / h3 `No-Solder Motherboard Swap` / `Four screws, one connector. Swap out the OEM board without any cutting or soldering. 100% reversible back to stock anytime.`
-- **L1.36** row 2 — badge `COMPUTE & MEMORY` / h3 `ESP32-S3 (16 MB Flash / 8 MB PSRAM)` / `Dual-core Xtensa LX7 processor running at up to 240 MHz with massive vector/PSRAM headroom for heavy symbolic CAS math and Game Boy emulation.`
-- **L1.37** row 3 — badge `DISPLAY` / h3 `2.4" Color IPS LCD Screen` / `ILI9341 panel with 320×240 physical resolution and a 320×156 fitted canvas for crisp math typography, plots, and notes.`
-- **L1.38** row 4 — badge `POWER` / h3 `Rechargeable Battery & USB-C` / `Internal Li-ion battery charging right through the shell's USB-C port. Completely untethered operation.`
+- **L1.36** row 2 — badge `Back Shell` / back shell to accomodate new internals
+- **L1.37** row 3 — badge `DISPLAY` / h3 `2.4" Color IPS LCD Screen` / `ILI9341 panel with 320×240 physical resolution and a 320×156 fitted cancas to look indetical to stock. no major cutting necessary`
+new head : //` FEATURES`
+[delete]8** row 4 — badge `POWER` / h3 `Rechargeable Battery & USB-C` / `Internal Li-ion battery charging right through the shell's USB-C port. Completely untethered operation.`
 - **L1.39** row 5 — badge `STORAGE` / h3 `microSD Card Slot` / `Load Game Boy ROMs, text notes, markdown cheat sheets, calculation logs, and custom environment settings.`
 - **L1.40** row 6 — badge `CONNECTIVITY & HARDWARE` / h3 `Wi-Fi & Camera Header` / `Device-hosted AP for phone setup portal. Carry onboard pogo-pin header for optional magnetic OV2640 camera add-on. (OTA Wi-Fi updates landing in upcoming release).`
 
@@ -153,8 +154,8 @@ File: `public/index.html`
 [ART: none. One brass-bordered promise box, then 5 numbered capability rows.]
 
 - **L1.41** label: `// SOFTWARE & FIRMWARE`
-- **L1.42** desc: `Powered by NumOS / AbsolutOS. Built on high-performance C++ and open-source engines.`
-- **L1.43** promise box h3: `100% Open & Free to Modify`
+- **L1.42** desc: `Powered by NumOS. Built on high-performance C++ and open-source engines.`
+- **L1.43** promise box h3: `100% Open & Free to Modify` (AI AGENT SKILLS COMING SOON)
 - **L1.44** promise box p: `All schematics, PCB designs, firmware, and tools are open-source. Fork the codebase, write your own LVGL apps, or flash custom firmware whenever you want.`
 - **L1.45** cap 01 — `Exact Symbolic CAS Math (Giac / KhiCAS)` / `Real computer algebra system: exact fractions, symbolic calculus, integrals, derivatives, matrix algebra, and equation solving rendered in STIX and Casio math typography.`
 - **L1.46** cap 02 — `Game Boy & GBC Emulation Core` / `Integrated Walnut-CGB header-only emulator. Play classic Game Boy & Game Boy Color games directly on the display using your calculator's physical keypad.`
@@ -166,7 +167,7 @@ Note: the section heading for this block is absent — it goes straight from the
 
 ### Footer
 
-- **L1.50** brand: `absolut-CAS` + `© 2026 • Open Hardware Calculator Project`
+- **L1.50** brand: `absolut-CAS` + `© 2026 • Open Hardware Project`
 - **L1.51** links: `GitHub Repo` (github.com/AbuPaad/Absolut-CAS) `Apps` `Browser Emulator` `Waitlist`
 
 ---
@@ -178,17 +179,17 @@ File: `public/apps/index.html`
 ### Head + nav
 
 - **A0.1** title: `Apps at absolut-CAS / NumOS`
-- **A0.2** meta description: `Every app on the board, shown on the real screen: CAS maths, graphing, chemistry, circuits, a Game Boy core and more.`
+- **A0.2** meta description: `Every app on the board`
 - **A1.1** brand: `absolut-CAS` + `App Gallery`
 - **A1.2** links: `Overview` `Hardware` `Emulator`
 - **A1.3** cta: `Join the Waitlist` → `/#waitlist`
-- **A1.4** theme button: hardcoded `Light Mode` (again overwritten by JS on load)
+- **A1.4** theme button: hardcoded `Light Mode` [DONT HARDCODE] (again overwritten by JS on load)
 
 ### Header
 
 - **A1.5** label: `// THE APPS`
 - **A1.6** h1: `Everything it can do, on the real screen.`
-- **A1.7** intro: `Eleven apps, each captured from the real firmware at 320 by 156. Eleven more run on the device but cannot be captured from the emulator yet, so they are listed at the bottom instead of being faked. No image on this page is a mockup.`
+[delete]- **A1.7** intro: `Eleven apps, each captured from the real firmware at 320 by 156. Eleven more run on the device but cannot be captured from the emulator yet, so they are listed at the bottom instead of being faked. No image on this page is a mockup.`
 
 ### Index (11 cells, each = colour dot + name + launcher id)
 
@@ -211,7 +212,7 @@ Page order, and this order drives everything else on the page:
 **The jump-list rule.** Each plate carries a `<details>` "App index" holding the **next five apps in page order, wrapping at the end**, plus one link `See all 11 apps` back to the top index. This markup is generated from the table above — do not hand-edit one plate's list.
 
 **Shared per-plate strings.** Every plate repeats these verbatim:
-
+[CUT EVERY CAPS/TAG THING]
 - **A2.1** jump summary: `App index`
 - **A2.2** jump tail link: `See all 11 apps`
 - **A2.3** CTA on every plate: `Join the Launch Waitlist` → `/#waitlist`
@@ -346,13 +347,13 @@ File: `public/emulator/index.html`
 - **E1.1** brand: `absolut-CAS` + `WASM Emulator`
 - **E1.2** links: `Overview` → `/#overview`, `Specs` → `/#specs`, `Features` → `/#features` **(dead anchor, see PART 5)**, `Apps` → `/apps/`
 - **E1.3** cta: `Back to Site` → `/`
-- **E1.4** theme button: hardcoded `Dark` (overwritten by JS on load)
+- **E1.4** theme button: hardcoded `Dark` [DONT HARDCODE THEMES ANYWHERE](overwritten by JS on load)
 
 ### Header
 
 - **E1.5** label: `// INTERACTIVE BROWSER BUILD`
 - **E1.6** h1: `NumOS Emulator`
-- **E1.7** subtitle: `The real firmware compiled to WebAssembly, running in this tab. Boots the launcher in the Casio theme; open Calculation, Grapher, the AI app and the Game Boy core from there.`
+- **E1.7** subtitle:[delete] `The real firmware compiled to WebAssembly, running in this tab. Boots the launcher in the Casio theme; open Calculation, Grapher, the AI app and the Game Boy core from there.`
 
 ### Stage
 
@@ -363,11 +364,11 @@ File: `public/emulator/index.html`
 
 ### Side card — "What is running"
 
-- **E1.10** h2: `What is running`
-- **E1.11** `Real firmware` / `The same C++ that runs on the board, compiled to WebAssembly. Not a JavaScript re-implementation.`
+- **E1.10** [delete] h2: `What is running`
+- **E1.11**  / `The same C++ that runs on the board, compiled to WebAssembly. Not a JavaScript re-implementation.`
 - **E1.12** `Launcher + apps` / `Calculation, Grapher, Equations, Statistics, Notes, the AI wrapper and more, all reachable from the launcher.`
-- **E1.13** `AI, offline` / `The AI app reads a recorded answer from the filesystem, so it works with no network and no API key.`
-- **E1.14** `Themes` / `Boots in the Casio skin. Use the emulator's own Switch theme button, or the one below, to flip to NumOS.`
+- **E1.13**[delete] `AI, offline` / `The AI app reads a recorded answer from the filesystem, so it works with no network and no API key.`
+- **E1.14**[delete] `Themes` / `Boots in the Casio skin. Use the emulator's own Switch theme button, or the one below, to flip to NumOS.`
 - **E1.15** button: `Switch calculator theme` (disabled until the `numos-ready` event fires)
 - **E1.16** link button: `Join the Waitlist` → `/#waitlist`
 
@@ -399,5 +400,8 @@ File: `public/404.html`
 ## Open questions for you
 
 1. Does the waitlist get a real backend before this page goes public, or does the form change to something honest without one?
+  THERES A BACKEND NOW
 2. The `$5 / first 200` promo: define the mechanism, or cut it?
+   1. ILL HANDLE IT 
 3. The 404 page: restyle it to match the site, or cut it back to a plain "not found" with a link home?
+  RESTYLE

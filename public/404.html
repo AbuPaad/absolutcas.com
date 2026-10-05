@@ -13,30 +13,26 @@
 </head>
 <body class="layout-page">
 
-<div id="cursor-default" aria-hidden="true"></div>
-
-<div class="err-wrap">
-  <nav id="nav" style="margin:-2rem -2rem 0;background:var(--bg)">
+<nav id="nav">
+  <div class="nav-container">
     <a class="nav-brand" href="/"><b>absolut-CAS</b><small>free | connected</small></a>
     <ul class="nav-links">
       <li><a href="/">Front page</a></li>
       <li><a href="/emulator/">Emulator</a></li>
-      <li><button id="theme-btn" type="button" aria-live="polite">Dark</button></li>
+      <li><button id="theme-btn" type="button" aria-live="polite"></button></li>
     </ul>
-  </nav>
-
-  <div class="err-body" style="margin-top:3rem">
-    <p class="err-code" aria-hidden="true">404</p>
-    <p>That path does not exist here. The front page is the whole site; the app gallery and the
-      emulator are the two other pages. Nothing was lost: the board is at V2 and the copy is at launch, not at this address.</p>
-    <a class="inverse-btn" href="/">Back to the front page</a>
   </div>
+</nav>
 
-  <footer class="r-footer" style="margin:0 -2rem -2rem;border-bottom:none">
-    <span>the people</span>
-    <span>2026</span>
-  </footer>
-</div>
+<main class="main-content">
+  <section class="section">
+    <div class="container">
+      <h1 class="section-heading">404</h1>
+      <p class="prose-lead">That path does not exist here. The front page is the whole site; the app gallery and the emulator are the two other pages. Nothing was lost: the board is at V2 and the copy is at launch, not at this address.</p>
+      <p class="err-actions"><a class="btn primary-btn" href="/">Back to the front page</a></p>
+    </div>
+  </section>
+</main>
 
 <div id="ticker" aria-hidden="true">
   <div class="ticker-track">
@@ -44,6 +40,19 @@
     <span class="sep">&#9646;&#9646;&#9646;</span>
   </div>
 </div>
+
+<footer class="site-footer">
+  <div class="container footer-content">
+    <div class="footer-brand">
+      <b>absolut-CAS</b>
+      <small>the people &bull; 2026</small>
+    </div>
+    <ul class="footer-links">
+      <li><a href="/">Front page</a></li>
+      <li><a href="/emulator/">Emulator</a></li>
+    </ul>
+  </div>
+</footer>
 
 <script src="/assets/site.js" defer></script>
 </body>

@@ -1,6 +1,6 @@
 // Standalone-demo compatibility adapter only. The reusable component module
 // does not install window.numos or window.numosReady.
-import "./numos-component.8aee9921a059.js";
+import "./numos-component.fd33afe77241.js";
 
 const emulator = document.querySelector("numos-emulator");
 if (!emulator) throw new Error("The standalone NumOS demo needs <numos-emulator>");

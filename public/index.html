@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
-<title>absolut-CAS: It's your Casio. It does more now.</title>
-<meta name="description" content="A drop-in PCB & IPS screen upgrade for Casio fx-82 and fx-991 calculators: Wi-Fi, CAS math, graphing, Game Boy core, and AI tools in your original shell.">
-<meta property="og:title" content="absolut-CAS: It's your Casio. It does more now.">
-<meta property="og:description" content="Drop-in replacement board for Casio fx-82 and fx-991 calculators. Open hardware, no soldering.">
+<title>absolut-CAS: Your Casio does more now</title>
+<meta name="description" content="A drop-in upgrade for casio scientific calculators: Wi-Fi, CAS math, graphing, Game Boy core, and AI tools in your original shell.">
+<meta property="og:title" content="absolut-CAS: Your Casio does more now">
+<meta property="og:description" content="A drop-in upgrade for casio scientific calculators: Wi-Fi, CAS math, graphing, Game Boy core, and AI tools in your original shell.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://absolutcas.com/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23c7d3c0'/%3E%3Crect x='6' y='14' width='20' height='4' fill='%23161817'/%3E%3C/svg%3E">
@@ -35,7 +35,7 @@ try {
       <li><a href="/apps/">Apps</a></li>
       <li><a href="/emulator/">Emulator</a></li>
       <li><a class="nav-cta" href="/apps/">See the apps →</a></li>
-      <li><button id="theme-btn" type="button" aria-live="polite">Light</button></li>
+      <li><button id="theme-btn" type="button" aria-live="polite"></button></li>
     </ul>
   </div>
 </nav>
@@ -45,18 +45,6 @@ try {
   <!-- Hero Section -->
   <section class="hero-section">
     <div class="container">
-      <div class="hero-header-pill">
-        <span class="pill-dot"></span> Donor Shell: Casio fx-82 & fx-991 Family
-      </div>
-      <h1 class="hero-title">
-        It's your Casio.<br>
-        <span class="highlight">It does more now.</span>
-      </h1>
-      <p class="hero-subtitle">
-        A drop-in, no-solder PCB & IPS display replacement for the Casio calculator you already own.
-        Keep the original shell and keypad muscle memory, and upgrade the computer inside.
-      </p>
-      
       <div class="hero-actions">
         <a class="btn primary-btn" href="#waitlist">Join the Launch Waitlist</a>
         <a class="btn secondary-btn" href="/apps/">See the Apps →</a>
@@ -64,33 +52,23 @@ try {
 
       <!-- Telemetry Strip -->
       <div class="telemetry-strip">
-        <span class="telemetry-label">Status Log:</span>
-        <span class="tel-item green">✓ Keypad Matrix</span>
-        <span class="tel-item green">✓ Giac CAS Engine</span>
-        <span class="tel-item green">✓ Game Boy Core</span>
-        <span class="tel-item green">✓ Wi-Fi & AI Bridge</span>
         <span class="tel-item ammo">★ 100% Free & Open Source</span>
       </div>
     </div>
   </section>
 
-  <!-- Waitlist Section (With Prominent $5 Highlight) -->
+  <!-- Waitlist Section (With Early Backer Bonus) -->
   <section class="section alt-bg" id="waitlist">
     <div class="container">
       <div class="waitlist-container">
-        
+
         <!-- Highlight Callout Box -->
         <div class="promo-highlight-banner">
           <div class="promo-badge-gold">EARLY BACKER BONUS</div>
-          <h3 class="promo-amount">$5 API Promo Credit</h3>
-          <p class="promo-desc">
-            The first <strong>200 people</strong> to join the waitlist get a <strong>$5 credit</strong> on the API tool bridge.
-          </p>
         </div>
 
         <div class="waitlist-box">
           <h2>Get the Launch Notification</h2>
-          <p class="waitlist-sub">No spam, no marketing noise.</p>
 
           <form class="waitlist-form" id="waitlist-form" novalidate>
             <div class="form-row">
@@ -103,7 +81,7 @@ try {
                    style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
           </form>
 
-          <div class="form-msg hidden" id="form-ok">You're on the list! Check your inbox to confirm your address.</div>
+          <div class="form-msg hidden" id="form-ok">You're on the list!</div>
           <div class="form-msg bad hidden" id="form-bad">Please enter a valid email address.</div>
         </div>
 
@@ -114,14 +92,8 @@ try {
   <!-- Apps Gallery Callout -->
   <section class="action-banner">
     <div class="container action-flex">
-      <div class="action-text">
-        <span class="tag-accent">22 Apps</span>
-        <h2>See what it actually runs</h2>
-        <p>Eleven apps captured from the real firmware at 320×156: exact CAS maths, graphing, statistics, a Game Boy core and more. Eleven more are listed as coming soon. Nothing is a mockup.</p>
-      </div>
       <div class="action-btn-wrap">
         <a class="btn action-btn" href="/apps/">Browse the Apps →</a>
-        <p class="action-note">Prefer to poke at it? <a href="/emulator/">The browser build still works.</a></p>
       </div>
     </div>
   </section>
@@ -130,15 +102,14 @@ try {
   <section class="section" id="overview">
     <div class="container">
       <div class="section-label">// CONCEPT</div>
-      <h2 class="section-heading">Not dropship slop. A real computer platform.</h2>
-      
+      <h2 class="section-heading">A port of <a href="https://github.com/El-EnderJ/NeoCalculator" target="_blank" rel="noopener">Numos</a> for casio scientific calcs.</h2>
+
       <div class="prose-lead">
         <p>
-          This isn't one-dimensional slop built for exam cheating. Standard graphing calculators are deliberately held back by regulatory rules.
-          <strong>absolut-CAS</strong> gives your Casio calculator modern computer-grade capabilities while preserving the hardware shell and keypress muscle memory.
+          <strong>absolut-CAS</strong> gives your Casio flagship graphing calculator capabilities while preserving the form factor and UX that you know and love.
         </p>
         <p>
-          Everything is <strong>open, hackable, and free to modify</strong>. Zero cloud dependencies, zero subscription paywalls, and no locked bootloaders.
+          Everything is open, hackable, and free to modify. Zero cloud dependencies, zero subscription.
         </p>
       </div>
     </div>
@@ -149,7 +120,6 @@ try {
     <div class="container">
       <div class="section-label">// HARDWARE SPECIFICATIONS</div>
       <h2 class="section-heading">What's in the Drop-In Kit</h2>
-      <p class="section-desc">Designed as a clean swap for the ~350 million Casio fx-82 and fx-991 family calculators in circulation.</p>
 
       <ul class="spec-list">
         <li class="spec-item">
@@ -161,10 +131,10 @@ try {
         </li>
 
         <li class="spec-item">
-          <div class="spec-badge">COMPUTE & MEMORY</div>
+          <div class="spec-badge">BACK SHELL</div>
           <div class="spec-content">
-            <h3>ESP32-S3 (16 MB Flash / 8 MB PSRAM)</h3>
-            <p>Dual-core Xtensa LX7 processor running at up to 240 MHz with massive vector/PSRAM headroom for heavy symbolic CAS math and Game Boy emulation.</p>
+            <h3>Back Shell</h3>
+            <p>A back shell to accommodate the new internals.</p>
           </div>
         </li>
 
@@ -172,10 +142,14 @@ try {
           <div class="spec-badge">DISPLAY</div>
           <div class="spec-content">
             <h3>2.4" Color IPS LCD Screen</h3>
-            <p>ILI9341 panel with 320×240 physical resolution and a 320×156 fitted canvas for crisp math typography, plots, and notes.</p>
+            <p>ILI9341 panel with 320×240 physical resolution and a 320×156 fitted canvas to look identical to stock. No major cutting necessary.</p>
           </div>
         </li>
+      </ul>
 
+      <div class="section-label spec-subhead">// HW Features</div>
+
+      <ul class="spec-list">
         <li class="spec-item">
           <div class="spec-badge">POWER</div>
           <div class="spec-content">
@@ -207,7 +181,7 @@ try {
   <section class="section" id="capabilities">
     <div class="container">
       <div class="section-label">// SOFTWARE & FIRMWARE</div>
-      <p class="section-desc">Powered by NumOS / AbsolutOS. Built on high-performance C++ and open-source engines.</p>
+      <p class="section-desc">Powered by NumOS. Built on high-performance C++ and open-source engines.</p>
 
       <div class="open-promise-box">
         <h3>100% Open & Free to Modify</h3>
@@ -265,7 +239,7 @@ try {
   <div class="container footer-content">
     <div class="footer-brand">
       <b>absolut-CAS</b>
-      <small>© 2026 • Open Hardware Calculator Project</small>
+      <small>© 2026 • Open Hardware Project</small>
     </div>
     <ul class="footer-links">
       <li><a href="https://github.com/AbuPaad/Absolut-CAS" target="_blank" rel="noopener">GitHub Repo</a></li>

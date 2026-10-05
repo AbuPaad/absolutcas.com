@@ -121,16 +121,7 @@ button, input { font: inherit; color: inherit; }
 
 /* ---------- Hero Section ---------- */
 .hero-section { padding: 5rem 0 4rem; border-bottom: 1.5px solid var(--border); }
-.hero-header-pill {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--text-muted); border: 1px solid var(--border); padding: 0.3rem 0.7rem; border-radius: 20px;
-}
-.pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); display: inline-block; }
 
-.hero-title { font-family: var(--serif); font-size: clamp(3rem, 7vw, 5rem); line-height: 1.05; margin: 1.2rem 0; }
-.hero-title .highlight { color: var(--brass); font-style: italic; }
-.hero-subtitle { font-size: 1.1rem; max-width: 720px; color: var(--text-muted); line-height: 1.6; margin-bottom: 2rem; }
 .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
 
 .telemetry-strip {
@@ -138,8 +129,6 @@ button, input { font: inherit; color: inherit; }
   padding: 0.85rem 1.2rem; background: var(--card-bg); border: 1.5px solid var(--border);
   border-radius: 6px; font-size: 0.78rem; font-weight: 500;
 }
-.telemetry-label { font-weight: 700; color: var(--brass); text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.08em; }
-.tel-item.green { color: var(--green); }
 .tel-item.ammo { color: var(--brass); font-weight: 700; margin-left: auto; }
 
 /* ---------- Action Banner (See it in Action) ---------- */
@@ -147,12 +136,7 @@ button, input { font: inherit; color: inherit; }
   background: var(--card-bg); border-bottom: 1.5px solid var(--border); padding: 2.5rem 0;
 }
 .action-flex { display: flex; justify-content: space-between; align-items: center; gap: 2rem; flex-wrap: wrap; }
-.tag-accent { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brass); }
-.action-text h2 { font-family: var(--serif); font-size: 1.8rem; margin: 0.2rem 0 0.4rem; }
-.action-text p { font-size: 0.88rem; color: var(--text-muted); max-width: 540px; }
 .action-btn-wrap { display: flex; flex-direction: column; align-items: flex-end; gap: .6rem; }
-.action-note { font-size: .72rem; color: var(--text-muted); text-align: right; }
-.action-note a { color: var(--brass); text-decoration: underline; }
 .action-btn { background: var(--brass); color: #000; border-color: var(--brass); }
 .action-btn:hover { opacity: 0.9; }
 
@@ -176,6 +160,7 @@ button, input { font: inherit; color: inherit; }
 }
 .spec-content h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem; }
 .spec-content p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; }
+.spec-subhead { margin: 2.5rem 0 1.2rem; }
 
 /* ---------- Capabilities List ---------- */
 .capabilities-list { display: flex; flex-direction: column; gap: 1.2rem; margin-bottom: 2.5rem; }
@@ -206,15 +191,12 @@ button, input { font: inherit; color: inherit; }
   font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
   padding: 0.3rem 0.8rem; border-radius: 20px; margin-bottom: 0.8rem;
 }
-.promo-amount { font-family: var(--serif); font-size: 2.8rem; color: var(--brass); line-height: 1; margin-bottom: 0.6rem; }
-.promo-desc { font-size: 0.95rem; color: var(--text-muted); max-width: 500px; margin: 0 auto; }
 
 .waitlist-box {
   background: var(--card-bg); border: 1.5px solid var(--border);
   padding: 2.5rem 2rem; border-radius: 8px; text-align: center;
 }
 .waitlist-box h2 { font-family: var(--serif); font-size: 2.2rem; margin-bottom: 0.4rem; }
-.waitlist-sub { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.8rem; }
 
 .waitlist-form { max-width: 500px; margin: 0 auto; }
 .form-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
@@ -280,7 +262,6 @@ button, input { font: inherit; color: inherit; }
 
 .apps-header { margin-bottom: 1.75rem; }
 .apps-header h1 { font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1.1; margin-bottom: .6rem; }
-.apps-intro { font-size: 1rem; color: var(--text-muted); max-width: 760px; line-height: 1.65; }
 
 /* Table of contents. Cells are 1px-apart on a border-coloured parent, so the
    hairlines come from the grid gap rather than per-child borders. */
@@ -347,7 +328,6 @@ button, input { font: inherit; color: inherit; }
 }
 .shot-desc { max-width: 32ch; }
 .shot-path { display: block; margin-top: .6rem; font-size: .58rem; color: var(--brass); word-break: break-all; opacity: .85; }
-.shot-cap { padding: .6rem .7rem; border-top: 1px solid var(--border); font-size: .74rem; color: var(--text-muted); line-height: 1.5; }
 
 /* Capability strip: short, verifiable claims only. */
 .app-caps { list-style: none; display: flex; flex-wrap: wrap; gap: .5rem; }
@@ -435,6 +415,16 @@ button, input { font: inherit; color: inherit; }
 .app-cta .btn { padding: .55rem 1.1rem; font-size: .8rem; border-color: var(--brass); color: var(--brass); }
 .app-cta .btn:hover { background: var(--brass-bg); }
 
+/* ---------- Not-found page ---------- */
+.err-actions { margin-top: 1.6rem; }
+#ticker { border-top: 1.5px solid var(--border); background: var(--brass-bg); overflow: hidden; }
+.ticker-track {
+  display: flex; gap: 2rem; padding: 0.5rem 1.5rem;
+  font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--brass); white-space: nowrap;
+}
+.ticker-track .sep { opacity: 0.5; }
+
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {
   .emulator-stage { grid-template-columns: 1fr; }
@@ -446,7 +436,6 @@ button, input { font: inherit; color: inherit; }
 @media (max-width: 640px) {
   .nav-container { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
   .nav-links { flex-wrap: wrap; gap: 0.8rem; }
-  .hero-title { font-size: 2.4rem; }
   .waitlist-box { padding: 2rem 1rem; }
   .form-row { flex-direction: column; }
   .form-input { width: 100%; }

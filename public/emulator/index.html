@@ -29,7 +29,7 @@ try {
       <li><a href="/#features">Features</a></li>
       <li><a href="/apps/">Apps</a></li>
       <li><a class="nav-cta" href="/">Back to Site</a></li>
-      <li><button id="theme-btn" type="button" aria-live="polite">Dark</button></li>
+      <li><button id="theme-btn" type="button" aria-live="polite"></button></li>
     </ul>
   </div>
 </nav>
@@ -39,11 +39,6 @@ try {
     <div class="emulator-header">
       <div class="section-label">// INTERACTIVE BROWSER BUILD</div>
       <h1>NumOS Emulator</h1>
-      <p class="emulator-subtitle">
-        The real firmware compiled to WebAssembly, running in this tab. Boots the
-        launcher in the Casio theme; open Calculation, Grapher, the AI app and the
-        Game Boy core from there.
-      </p>
     </div>
 
     <div class="emulator-stage">
@@ -61,7 +56,6 @@ try {
 
       <!-- Side Info Card -->
       <div class="emulator-side">
-        <h2>What is running</h2>
         <div class="info-row">
           <strong>Real firmware</strong>
           <span>The same C++ that runs on the board, compiled to WebAssembly. Not a JavaScript re-implementation.</span>
@@ -69,14 +63,6 @@ try {
         <div class="info-row">
           <strong>Launcher + apps</strong>
           <span>Calculation, Grapher, Equations, Statistics, Notes, the AI wrapper and more, all reachable from the launcher.</span>
-        </div>
-        <div class="info-row">
-          <strong>AI, offline</strong>
-          <span>The AI app reads a recorded answer from the filesystem, so it works with no network and no API key.</span>
-        </div>
-        <div class="info-row">
-          <strong>Themes</strong>
-          <span>Boots in the Casio skin. Use the emulator's own <em>Switch theme</em> button, or the one below, to flip to NumOS.</span>
         </div>
 
         <button class="btn primary-btn full-width" id="calc-theme-btn" type="button" disabled>

@@ -1,44 +1,44 @@
 {
   "output": "out/wasm/dist/release",
   "manifestBytes": 3047,
-  "manifestGzipBytes": 1011,
-  "manifestBrotliBytes": 872,
+  "manifestGzipBytes": 1003,
+  "manifestBrotliBytes": 882,
   "assets": {
     "wasm": {
       "logicalName": "wasm",
-      "url": "./numos-emulator.89750ec19dae.wasm",
-      "bytes": 6748486,
-      "sha256": "89750ec19dae091770b60124eaef48a21cd4d8de8d4588e7911874bc5b8463ca",
+      "url": "./numos-emulator.989b4ee722b0.wasm",
+      "bytes": 6761032,
+      "sha256": "989b4ee722b08583fd06e3c4ded85a2ab59b171d4f32ebb8ba48c07f4a291e20",
       "mime": "application/wasm",
-      "gzipBytes": 2161878,
-      "brotliBytes": 1683944
+      "gzipBytes": 2177039,
+      "brotliBytes": 1689219
     },
     "fsImage": {
       "logicalName": "fsImage",
-      "url": "./numos-emulator.fa9f8064c46a.data",
-      "bytes": 71700,
-      "sha256": "fa9f8064c46af8e5f455ec4d79c2439b6dbb38d8db04c3402007388668d6acd2",
+      "url": "./numos-emulator.2563b2ec8de5.data",
+      "bytes": 72512,
+      "sha256": "2563b2ec8de53501171204a4fe7f3d6b46bc8d2692372b920be4506dc3318fc8",
       "mime": "application/octet-stream",
-      "gzipBytes": 22974,
-      "brotliBytes": 20916
+      "gzipBytes": 24246,
+      "brotliBytes": 21254
     },
     "runtime": {
       "logicalName": "runtime",
-      "url": "./numos-runtime.f302860518b7.js",
-      "bytes": 228171,
-      "sha256": "f302860518b7397e38a7418f379f16eff5c8d65287f9119b9b8c9b83631f0e8c",
+      "url": "./numos-runtime.af7a2ddf6c74.js",
+      "bytes": 228376,
+      "sha256": "af7a2ddf6c7415d4a6ecb356b8f7613a8d7fbd1759b3df7ba136896d47ab9f24",
       "mime": "text/javascript",
-      "gzipBytes": 57400,
-      "brotliBytes": 48937
+      "gzipBytes": 57827,
+      "brotliBytes": 48962
     },
     "componentCss": {
       "logicalName": "componentCss",
-      "url": "./numos-component.2c46732cc590.css",
+      "url": "./numos-component.8c93983f12f3.css",
       "bytes": 13450,
-      "sha256": "2c46732cc590140ba81dc9f7c14301457eb2fe4c34047854180e1c4f937aec19",
+      "sha256": "8c93983f12f3eec694bf250fa3c50892a484814951f8e95089081957830a379c",
       "mime": "text/css",
-      "gzipBytes": 3936,
-      "brotliBytes": 3338
+      "gzipBytes": 3931,
+      "brotliBytes": 3341
     },
     "persistence": {
       "logicalName": "persistence",
@@ -46,7 +46,7 @@
       "bytes": 13621,
       "sha256": "3813c20a70e5181cfe7c935e0a29684e489eae0dea3ad9313faab00173796398",
       "mime": "text/javascript",
-      "gzipBytes": 3519,
+      "gzipBytes": 3508,
       "brotliBytes": 3045
     },
     "keypad": {
@@ -55,7 +55,7 @@
       "bytes": 6855,
       "sha256": "1e9f02ccd7bf568c1820caaa1af3e849918acf3c4b47eb351ca95a3f30a94848",
       "mime": "text/javascript",
-      "gzipBytes": 2796,
+      "gzipBytes": 2829,
       "brotliBytes": 2304
     },
     "keyContext": {
@@ -64,26 +64,26 @@
       "bytes": 27236,
       "sha256": "ee9ed793a1861f6cd07c67fe10dfbe403c27089953b62d536c9a01c72489d185",
       "mime": "text/javascript",
-      "gzipBytes": 2457,
+      "gzipBytes": 2447,
       "brotliBytes": 1987
     },
     "component": {
       "logicalName": "component",
-      "url": "./numos-component.8aee9921a059.js",
-      "bytes": 78793,
-      "sha256": "8aee9921a059ec72ea08f99c12bdc2e93a8eafc1f0a1acd16bfd4ca396c78c96",
+      "url": "./numos-component.fd33afe77241.js",
+      "bytes": 78817,
+      "sha256": "fd33afe77241c2224a3273ade747e1298e2741d864ab9d533561447fb073380e",
       "mime": "text/javascript",
-      "gzipBytes": 20746,
-      "brotliBytes": 17705
+      "gzipBytes": 20811,
+      "brotliBytes": 17716
     },
     "shell": {
       "logicalName": "shell",
-      "url": "./numos-shell.16baf49a1873.js",
+      "url": "./numos-shell.95f04fb29291.js",
       "bytes": 1251,
-      "sha256": "16baf49a1873873e5a661e02c714ee5ef658416ef1c68d5958411d9a17854121",
+      "sha256": "95f04fb2929166fc4e618f5bf98b2b7f18091e6a155967fb4999199af9ee7a42",
       "mime": "text/javascript",
-      "gzipBytes": 525,
-      "brotliBytes": 439
+      "gzipBytes": 523,
+      "brotliBytes": 440
     }
   }
 }

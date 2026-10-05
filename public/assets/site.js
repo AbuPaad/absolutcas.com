@@ -78,12 +78,7 @@
         .then(function (out) {
           form.reset();
           if (out && out.ok) {
-            // Only promise an inbox delivery if one actually happened. With no mail
-            // provider configured the server returns email_sent:false, and claiming
-            // "check your inbox" would be a lie the visitor cannot see through.
-            msgOk.textContent = (out.email_sent === false)
-              ? "You're on the list."
-              : "You're on the list! Check your inbox to confirm your address.";
+            msgOk.textContent = "You're on the list!";
             msgOk.classList.remove('hidden');
           } else {
             msgBad.textContent = 'Something went wrong. Try again in a minute.';
